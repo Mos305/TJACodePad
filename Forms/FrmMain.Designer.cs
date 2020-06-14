@@ -142,6 +142,7 @@
             this.TosMain = new System.Windows.Forms.ToolStrip();
             this.Tsb_NewFile = new System.Windows.Forms.ToolStripButton();
             this.TsbOpen = new System.Windows.Forms.ToolStripButton();
+            this.TsbSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.TsbComment = new System.Windows.Forms.ToolStripButton();
             this.TsbUnComment = new System.Windows.Forms.ToolStripButton();
@@ -156,6 +157,10 @@
             this.TsbOffset_Label = new System.Windows.Forms.ToolStripLabel();
             this.TsbOffset_Plus = new System.Windows.Forms.ToolStripButton();
             this.SpcMain = new System.Windows.Forms.SplitContainer();
+            this.GrbBalloon = new System.Windows.Forms.GroupBox();
+            this.LsvBalloon = new System.Windows.Forms.ListView();
+            this.ColRow = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColHits = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.GrbPlayTime = new System.Windows.Forms.GroupBox();
             this.LblPlayTime = new System.Windows.Forms.Label();
             this.GrbBarInfo = new System.Windows.Forms.GroupBox();
@@ -175,10 +180,7 @@
             this.LvlNotes = new System.Windows.Forms.Label();
             this.LblKa = new System.Windows.Forms.Label();
             this.AzkCode = new Sgry.Azuki.WinForms.AzukiControl();
-            this.GrbBalloon = new System.Windows.Forms.GroupBox();
-            this.LsvBalloon = new System.Windows.Forms.ListView();
-            this.ColRow = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ColHits = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.TsmVersion_Update = new System.Windows.Forms.ToolStripMenuItem();
             this.MesMain.SuspendLayout();
             this.StsMain.SuspendLayout();
             this.TosMain.SuspendLayout();
@@ -186,12 +188,12 @@
             this.SpcMain.Panel1.SuspendLayout();
             this.SpcMain.Panel2.SuspendLayout();
             this.SpcMain.SuspendLayout();
+            this.GrbBalloon.SuspendLayout();
             this.GrbPlayTime.SuspendLayout();
             this.GrbBarInfo.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.GrbScoreInfo.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.GrbBalloon.SuspendLayout();
             this.SuspendLayout();
             // 
             // MesMain
@@ -207,7 +209,7 @@
             this.TsmVersion});
             this.MesMain.Location = new System.Drawing.Point(0, 0);
             this.MesMain.Name = "MesMain";
-            this.MesMain.Size = new System.Drawing.Size(1003, 30);
+            this.MesMain.Size = new System.Drawing.Size(1003, 28);
             this.MesMain.TabIndex = 0;
             this.MesMain.Text = "menuStrip1";
             // 
@@ -224,7 +226,7 @@
             this.TsmFile_Quit});
             this.TsmFile.Image = ((System.Drawing.Image)(resources.GetObject("TsmFile.Image")));
             this.TsmFile.Name = "TsmFile";
-            this.TsmFile.Size = new System.Drawing.Size(102, 26);
+            this.TsmFile.Size = new System.Drawing.Size(102, 24);
             this.TsmFile.Text = "ファイル(&F)";
             // 
             // TsmFile_NewFile
@@ -234,6 +236,7 @@
             this.TsmFile_NewFile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.TsmFile_NewFile.Size = new System.Drawing.Size(231, 26);
             this.TsmFile_NewFile.Text = "新規作成(&N)";
+            this.TsmFile_NewFile.Click += new System.EventHandler(this.TsmFile_NewFile_Click);
             // 
             // TsmFile_Open
             // 
@@ -242,6 +245,7 @@
             this.TsmFile_Open.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.TsmFile_Open.Size = new System.Drawing.Size(231, 26);
             this.TsmFile_Open.Text = "開く(&O)...";
+            this.TsmFile_Open.Click += new System.EventHandler(this.TsmFile_Open_Click);
             // 
             // TsmFile_Save
             // 
@@ -250,12 +254,14 @@
             this.TsmFile_Save.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.TsmFile_Save.Size = new System.Drawing.Size(231, 26);
             this.TsmFile_Save.Text = "上書き保存(&S)";
+            this.TsmFile_Save.Click += new System.EventHandler(this.TsmFile_Save_Click);
             // 
             // TsmFile_SaveAs
             // 
             this.TsmFile_SaveAs.Name = "TsmFile_SaveAs";
             this.TsmFile_SaveAs.Size = new System.Drawing.Size(231, 26);
             this.TsmFile_SaveAs.Text = "名前を付けて保存(&A)...";
+            this.TsmFile_SaveAs.Click += new System.EventHandler(this.TsmFile_SaveAs_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -268,6 +274,7 @@
             this.TsmFile_Setting.Name = "TsmFile_Setting";
             this.TsmFile_Setting.Size = new System.Drawing.Size(231, 26);
             this.TsmFile_Setting.Text = "設定(&U)...";
+            this.TsmFile_Setting.Click += new System.EventHandler(this.TsmFile_Setting_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -280,6 +287,7 @@
             this.TsmFile_Quit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             this.TsmFile_Quit.Size = new System.Drawing.Size(231, 26);
             this.TsmFile_Quit.Text = "終了(&X)";
+            this.TsmFile_Quit.Click += new System.EventHandler(this.TsmFile_Quit_Click);
             // 
             // TsmEdit
             // 
@@ -299,7 +307,7 @@
             this.TsmEdit_Combine});
             this.TsmEdit.Image = ((System.Drawing.Image)(resources.GetObject("TsmEdit.Image")));
             this.TsmEdit.Name = "TsmEdit";
-            this.TsmEdit.Size = new System.Drawing.Size(91, 26);
+            this.TsmEdit.Size = new System.Drawing.Size(91, 24);
             this.TsmEdit.Text = "編集(&E)";
             // 
             // TsmEdit_Search
@@ -419,66 +427,66 @@
             this.TsmHeader_LIFE});
             this.TsmHeader.Image = ((System.Drawing.Image)(resources.GetObject("TsmHeader.Image")));
             this.TsmHeader.Name = "TsmHeader";
-            this.TsmHeader.Size = new System.Drawing.Size(97, 26);
+            this.TsmHeader.Size = new System.Drawing.Size(97, 24);
             this.TsmHeader.Text = "ヘッダ(&A)";
             // 
             // TsmHeader_TITLE
             // 
             this.TsmHeader_TITLE.Name = "TsmHeader_TITLE";
-            this.TsmHeader_TITLE.Size = new System.Drawing.Size(224, 26);
+            this.TsmHeader_TITLE.Size = new System.Drawing.Size(199, 26);
             this.TsmHeader_TITLE.Text = "TITLE(&T)";
             // 
             // TsmHeader_LEVEL
             // 
             this.TsmHeader_LEVEL.Name = "TsmHeader_LEVEL";
-            this.TsmHeader_LEVEL.Size = new System.Drawing.Size(224, 26);
+            this.TsmHeader_LEVEL.Size = new System.Drawing.Size(199, 26);
             this.TsmHeader_LEVEL.Text = "LEVEL(&L)";
             // 
             // TsmHeader_BPM
             // 
             this.TsmHeader_BPM.Name = "TsmHeader_BPM";
-            this.TsmHeader_BPM.Size = new System.Drawing.Size(224, 26);
+            this.TsmHeader_BPM.Size = new System.Drawing.Size(199, 26);
             this.TsmHeader_BPM.Text = "BPM(&B)";
             // 
             // TsmHeader_WAVE
             // 
             this.TsmHeader_WAVE.Name = "TsmHeader_WAVE";
-            this.TsmHeader_WAVE.Size = new System.Drawing.Size(224, 26);
+            this.TsmHeader_WAVE.Size = new System.Drawing.Size(199, 26);
             this.TsmHeader_WAVE.Text = "WAVE(&W)";
             // 
             // TsmHeader_SONGVOL
             // 
             this.TsmHeader_SONGVOL.Name = "TsmHeader_SONGVOL";
-            this.TsmHeader_SONGVOL.Size = new System.Drawing.Size(224, 26);
+            this.TsmHeader_SONGVOL.Size = new System.Drawing.Size(199, 26);
             this.TsmHeader_SONGVOL.Text = "SONGVOL(&V)";
             // 
             // TsmHeader_SEVOL
             // 
             this.TsmHeader_SEVOL.Name = "TsmHeader_SEVOL";
-            this.TsmHeader_SEVOL.Size = new System.Drawing.Size(224, 26);
+            this.TsmHeader_SEVOL.Size = new System.Drawing.Size(199, 26);
             this.TsmHeader_SEVOL.Text = "SEVOL(&O)";
             // 
             // TsmHeader_OFFSET
             // 
             this.TsmHeader_OFFSET.Name = "TsmHeader_OFFSET";
-            this.TsmHeader_OFFSET.Size = new System.Drawing.Size(224, 26);
+            this.TsmHeader_OFFSET.Size = new System.Drawing.Size(199, 26);
             this.TsmHeader_OFFSET.Text = "OFFSET(&O)";
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(196, 6);
             // 
             // TsmHeader_BALLOON
             // 
             this.TsmHeader_BALLOON.Name = "TsmHeader_BALLOON";
-            this.TsmHeader_BALLOON.Size = new System.Drawing.Size(224, 26);
+            this.TsmHeader_BALLOON.Size = new System.Drawing.Size(199, 26);
             this.TsmHeader_BALLOON.Text = "BALLOON(&A)";
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(196, 6);
             // 
             // TsmHeader_COURSE
             // 
@@ -490,7 +498,7 @@
             this.TsmHeader_COURSE_Oni,
             this.TsmHeader_COURSE_Edit});
             this.TsmHeader_COURSE.Name = "TsmHeader_COURSE";
-            this.TsmHeader_COURSE.Size = new System.Drawing.Size(224, 26);
+            this.TsmHeader_COURSE.Size = new System.Drawing.Size(199, 26);
             this.TsmHeader_COURSE.Text = "COURSE(&C)";
             // 
             // TsmHeader_COURSE_COURSE
@@ -537,7 +545,7 @@
             this.TsmHeader_SCOREMODE_1,
             this.TsmHeader_SCOREMODE_2});
             this.TsmHeader_SCOREMODE_.Name = "TsmHeader_SCOREMODE_";
-            this.TsmHeader_SCOREMODE_.Size = new System.Drawing.Size(224, 26);
+            this.TsmHeader_SCOREMODE_.Size = new System.Drawing.Size(199, 26);
             this.TsmHeader_SCOREMODE_.Text = "SCOREMODE(&R)";
             // 
             // TsmHeader_SCOREMODE_SCOREMODE
@@ -567,7 +575,7 @@
             // toolStripMenuItem12
             // 
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(196, 6);
             // 
             // TsmHeader_STYLE
             // 
@@ -576,7 +584,7 @@
             this.TsmHeader_STYLE_Single,
             this.TsmHeader_STYLE_Double});
             this.TsmHeader_STYLE.Name = "TsmHeader_STYLE";
-            this.TsmHeader_STYLE.Size = new System.Drawing.Size(224, 26);
+            this.TsmHeader_STYLE.Size = new System.Drawing.Size(199, 26);
             this.TsmHeader_STYLE.Text = "STYLE(&S)";
             // 
             // TsmHeader_STYLE_STYLE
@@ -605,7 +613,7 @@
             this.TsmHeader_SIDE_Ex,
             this.TsmHeader_SIDE_Both});
             this.TsmHeader_SIDE.Name = "TsmHeader_SIDE";
-            this.TsmHeader_SIDE.Size = new System.Drawing.Size(224, 26);
+            this.TsmHeader_SIDE.Size = new System.Drawing.Size(199, 26);
             this.TsmHeader_SIDE.Text = "SIDE(&I)";
             // 
             // TsmHeader_SIDE_SIDE
@@ -635,35 +643,35 @@
             // toolStripMenuItem13
             // 
             this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(196, 6);
             // 
             // TsmHeader_SUBTITLE
             // 
             this.TsmHeader_SUBTITLE.Name = "TsmHeader_SUBTITLE";
-            this.TsmHeader_SUBTITLE.Size = new System.Drawing.Size(224, 26);
+            this.TsmHeader_SUBTITLE.Size = new System.Drawing.Size(199, 26);
             this.TsmHeader_SUBTITLE.Text = "SUBTITLE(&U)";
             // 
             // TsmHeader_DEMOSTART
             // 
             this.TsmHeader_DEMOSTART.Name = "TsmHeader_DEMOSTART";
-            this.TsmHeader_DEMOSTART.Size = new System.Drawing.Size(224, 26);
+            this.TsmHeader_DEMOSTART.Size = new System.Drawing.Size(199, 26);
             this.TsmHeader_DEMOSTART.Text = "DEMOSTART(&D)";
             // 
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(196, 6);
             // 
             // TsmHeader_GAME
             // 
             this.TsmHeader_GAME.Name = "TsmHeader_GAME";
-            this.TsmHeader_GAME.Size = new System.Drawing.Size(224, 26);
+            this.TsmHeader_GAME.Size = new System.Drawing.Size(199, 26);
             this.TsmHeader_GAME.Text = "GAME(&G)";
             // 
             // TsmHeader_LIFE
             // 
             this.TsmHeader_LIFE.Name = "TsmHeader_LIFE";
-            this.TsmHeader_LIFE.Size = new System.Drawing.Size(224, 26);
+            this.TsmHeader_LIFE.Size = new System.Drawing.Size(199, 26);
             this.TsmHeader_LIFE.Text = "LIFE(&F)";
             // 
             // TsmCommand
@@ -696,153 +704,153 @@
             this.TsmCommand_BARLINEON});
             this.TsmCommand.Image = ((System.Drawing.Image)(resources.GetObject("TsmCommand.Image")));
             this.TsmCommand.Name = "TsmCommand";
-            this.TsmCommand.Size = new System.Drawing.Size(105, 26);
+            this.TsmCommand.Size = new System.Drawing.Size(105, 24);
             this.TsmCommand.Text = "コマンド(&C)";
             // 
             // TsmCommand_START
             // 
             this.TsmCommand_START.Name = "TsmCommand_START";
-            this.TsmCommand_START.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_START.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_START.Text = "#START(&0)";
             // 
             // TsmCommand_STARTP1
             // 
             this.TsmCommand_STARTP1.Name = "TsmCommand_STARTP1";
-            this.TsmCommand_STARTP1.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_STARTP1.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_STARTP1.Text = "#START P1(&1)";
             // 
             // TsmCommand_STARTP2
             // 
             this.TsmCommand_STARTP2.Name = "TsmCommand_STARTP2";
-            this.TsmCommand_STARTP2.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_STARTP2.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_STARTP2.Text = "#START P2(&2)";
             // 
             // TsmCommand_END
             // 
             this.TsmCommand_END.Name = "TsmCommand_END";
-            this.TsmCommand_END.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_END.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_END.Text = "#END(&3)";
             // 
             // toolStripMenuItem14
             // 
             this.toolStripMenuItem14.Name = "toolStripMenuItem14";
-            this.toolStripMenuItem14.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem14.Size = new System.Drawing.Size(218, 6);
             // 
             // TsmCommand_BPMCHANGE
             // 
             this.TsmCommand_BPMCHANGE.Name = "TsmCommand_BPMCHANGE";
-            this.TsmCommand_BPMCHANGE.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_BPMCHANGE.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_BPMCHANGE.Text = "#BPMCHANGE(&B)";
             // 
             // TsmCommand_GOGOSTART
             // 
             this.TsmCommand_GOGOSTART.Name = "TsmCommand_GOGOSTART";
-            this.TsmCommand_GOGOSTART.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_GOGOSTART.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_GOGOSTART.Text = "#GOGOSTART(&G)";
             // 
             // TsmCommand_GOGOEND
             // 
             this.TsmCommand_GOGOEND.Name = "TsmCommand_GOGOEND";
-            this.TsmCommand_GOGOEND.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_GOGOEND.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_GOGOEND.Text = "#GOGOEND(&O)";
             // 
             // TsmCommand_MEASURE
             // 
             this.TsmCommand_MEASURE.Name = "TsmCommand_MEASURE";
-            this.TsmCommand_MEASURE.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_MEASURE.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_MEASURE.Text = "#MEASURE(&U)";
             // 
             // TsmCommand_SCROLL
             // 
             this.TsmCommand_SCROLL.Name = "TsmCommand_SCROLL";
-            this.TsmCommand_SCROLL.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_SCROLL.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_SCROLL.Text = "#SCROLL(&S)";
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(218, 6);
             // 
             // TsmCommand_DELAY
             // 
             this.TsmCommand_DELAY.Name = "TsmCommand_DELAY";
-            this.TsmCommand_DELAY.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_DELAY.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_DELAY.Text = "#DELAY(&D)";
             // 
             // TsmCommand_SECTION
             // 
             this.TsmCommand_SECTION.Name = "TsmCommand_SECTION";
-            this.TsmCommand_SECTION.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_SECTION.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_SECTION.Text = "#SECTION(&T)";
             // 
             // TsmCommand_BRANCHSTART
             // 
             this.TsmCommand_BRANCHSTART.Name = "TsmCommand_BRANCHSTART";
-            this.TsmCommand_BRANCHSTART.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_BRANCHSTART.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_BRANCHSTART.Text = "#BRANCHSTART(&R)";
             // 
             // TsmCommand_BRANCHEND
             // 
             this.TsmCommand_BRANCHEND.Name = "TsmCommand_BRANCHEND";
-            this.TsmCommand_BRANCHEND.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_BRANCHEND.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_BRANCHEND.Text = "#BRANCHEND(&A)";
             // 
             // TsmCommand_N
             // 
             this.TsmCommand_N.Name = "TsmCommand_N";
-            this.TsmCommand_N.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_N.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_N.Text = "#N(&N)";
             // 
             // TsmCommand_E
             // 
             this.TsmCommand_E.Name = "TsmCommand_E";
-            this.TsmCommand_E.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_E.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_E.Text = "#E(&E)";
             // 
             // TsmCommand_M
             // 
             this.TsmCommand_M.Name = "TsmCommand_M";
-            this.TsmCommand_M.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_M.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_M.Text = "#M(&M)";
             // 
             // TsmCommand_LEVEL
             // 
             this.TsmCommand_LEVEL.Name = "TsmCommand_LEVEL";
-            this.TsmCommand_LEVEL.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_LEVEL.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_LEVEL.Text = "#LEVELHOLD(&L)";
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(218, 6);
             // 
             // TsmCommand_BMSCROLL
             // 
             this.TsmCommand_BMSCROLL.Name = "TsmCommand_BMSCROLL";
-            this.TsmCommand_BMSCROLL.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_BMSCROLL.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_BMSCROLL.Text = "#BMSCRROLL(&B)";
             // 
             // TsmCommand_HBSCROLL
             // 
             this.TsmCommand_HBSCROLL.Name = "TsmCommand_HBSCROLL";
-            this.TsmCommand_HBSCROLL.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_HBSCROLL.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_HBSCROLL.Text = "#HBSCROLL(&H)";
             // 
             // toolStripMenuItem10
             // 
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(218, 6);
             // 
             // TsmCommand_BARLINEOFF
             // 
             this.TsmCommand_BARLINEOFF.Name = "TsmCommand_BARLINEOFF";
-            this.TsmCommand_BARLINEOFF.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_BARLINEOFF.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_BARLINEOFF.Text = "#BARLINEOFF(&I)";
             // 
             // TsmCommand_BARLINEON
             // 
             this.TsmCommand_BARLINEON.Name = "TsmCommand_BARLINEON";
-            this.TsmCommand_BARLINEON.Size = new System.Drawing.Size(224, 26);
+            this.TsmCommand_BARLINEON.Size = new System.Drawing.Size(221, 26);
             this.TsmCommand_BARLINEON.Text = "#BARLINEON(&i)";
             // 
             // TsmTool
@@ -853,7 +861,7 @@
             this.TsmTool_OtherTools});
             this.TsmTool.Image = ((System.Drawing.Image)(resources.GetObject("TsmTool.Image")));
             this.TsmTool.Name = "TsmTool";
-            this.TsmTool.Size = new System.Drawing.Size(94, 26);
+            this.TsmTool.Size = new System.Drawing.Size(94, 24);
             this.TsmTool.Text = "ツール(&T)";
             // 
             // TsmTool_Play
@@ -861,13 +869,13 @@
             this.TsmTool_Play.Image = ((System.Drawing.Image)(resources.GetObject("TsmTool_Play.Image")));
             this.TsmTool_Play.Name = "TsmTool_Play";
             this.TsmTool_Play.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.TsmTool_Play.Size = new System.Drawing.Size(224, 26);
+            this.TsmTool_Play.Size = new System.Drawing.Size(205, 26);
             this.TsmTool_Play.Text = "譜面を再生(&P)";
             // 
             // toolStripMenuItem15
             // 
             this.toolStripMenuItem15.Name = "toolStripMenuItem15";
-            this.toolStripMenuItem15.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem15.Size = new System.Drawing.Size(202, 6);
             // 
             // TsmTool_OtherTools
             // 
@@ -880,7 +888,7 @@
             this.TsmHelp_Help});
             this.TsmHelp.Image = ((System.Drawing.Image)(resources.GetObject("TsmHelp.Image")));
             this.TsmHelp.Name = "TsmHelp";
-            this.TsmHelp.Size = new System.Drawing.Size(99, 26);
+            this.TsmHelp.Size = new System.Drawing.Size(99, 24);
             this.TsmHelp.Text = "ヘルプ(&H)";
             // 
             // TsmHelp_Help
@@ -888,14 +896,16 @@
             this.TsmHelp_Help.Image = ((System.Drawing.Image)(resources.GetObject("TsmHelp_Help.Image")));
             this.TsmHelp_Help.Name = "TsmHelp_Help";
             this.TsmHelp_Help.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.TsmHelp_Help.Size = new System.Drawing.Size(224, 26);
+            this.TsmHelp_Help.Size = new System.Drawing.Size(172, 26);
             this.TsmHelp_Help.Text = "ヘルプ(&H)";
             // 
             // TsmVersion
             // 
             this.TsmVersion.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.TsmVersion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TsmVersion_Update});
             this.TsmVersion.Name = "TsmVersion";
-            this.TsmVersion.Size = new System.Drawing.Size(67, 26);
+            this.TsmVersion.Size = new System.Drawing.Size(67, 24);
             this.TsmVersion.Text = "Ver 0.1";
             // 
             // TssRow
@@ -962,6 +972,7 @@
             // 
             // StsMain
             // 
+            this.StsMain.BackColor = System.Drawing.Color.LightGreen;
             this.StsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.StsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TssRow,
@@ -1001,6 +1012,7 @@
             this.TosMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Tsb_NewFile,
             this.TsbOpen,
+            this.TsbSave,
             this.toolStripSeparator1,
             this.TsbComment,
             this.TsbUnComment,
@@ -1014,7 +1026,7 @@
             this.TsbOffset_Minus,
             this.TsbOffset_Label,
             this.TsbOffset_Plus});
-            this.TosMain.Location = new System.Drawing.Point(0, 30);
+            this.TosMain.Location = new System.Drawing.Point(0, 28);
             this.TosMain.Name = "TosMain";
             this.TosMain.Size = new System.Drawing.Size(1003, 35);
             this.TosMain.TabIndex = 2;
@@ -1027,7 +1039,8 @@
             this.Tsb_NewFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Tsb_NewFile.Name = "Tsb_NewFile";
             this.Tsb_NewFile.Size = new System.Drawing.Size(29, 32);
-            this.Tsb_NewFile.Text = "toolStripButton1";
+            this.Tsb_NewFile.Text = "新規作成";
+            this.Tsb_NewFile.Click += new System.EventHandler(this.TsmFile_NewFile_Click);
             // 
             // TsbOpen
             // 
@@ -1036,7 +1049,18 @@
             this.TsbOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbOpen.Name = "TsbOpen";
             this.TsbOpen.Size = new System.Drawing.Size(29, 32);
-            this.TsbOpen.Text = "toolStripButton2";
+            this.TsbOpen.Text = "開く";
+            this.TsbOpen.Click += new System.EventHandler(this.TsmFile_Open_Click);
+            // 
+            // TsbSave
+            // 
+            this.TsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TsbSave.Image = ((System.Drawing.Image)(resources.GetObject("TsbSave.Image")));
+            this.TsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TsbSave.Name = "TsbSave";
+            this.TsbSave.Size = new System.Drawing.Size(29, 32);
+            this.TsbSave.Text = "保存";
+            this.TsbSave.Click += new System.EventHandler(this.TsmFile_Save_Click);
             // 
             // toolStripSeparator1
             // 
@@ -1050,7 +1074,7 @@
             this.TsbComment.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbComment.Name = "TsbComment";
             this.TsbComment.Size = new System.Drawing.Size(29, 32);
-            this.TsbComment.Text = "toolStripButton3";
+            this.TsbComment.Text = "コメントアウト";
             // 
             // TsbUnComment
             // 
@@ -1059,7 +1083,7 @@
             this.TsbUnComment.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbUnComment.Name = "TsbUnComment";
             this.TsbUnComment.Size = new System.Drawing.Size(29, 32);
-            this.TsbUnComment.Text = "toolStripButton4";
+            this.TsbUnComment.Text = "コメント解除";
             // 
             // toolStripSeparator2
             // 
@@ -1073,7 +1097,7 @@
             this.TsbFill0.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbFill0.Name = "TsbFill0";
             this.TsbFill0.Size = new System.Drawing.Size(29, 32);
-            this.TsbFill0.Text = "toolStripButton5";
+            this.TsbFill0.Text = "0埋め";
             // 
             // TsbFill00
             // 
@@ -1082,7 +1106,7 @@
             this.TsbFill00.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbFill00.Name = "TsbFill00";
             this.TsbFill00.Size = new System.Drawing.Size(29, 32);
-            this.TsbFill00.Text = "toolStripButton6";
+            this.TsbFill00.Text = "00埋め";
             // 
             // TsbRemoveBy1
             // 
@@ -1091,7 +1115,7 @@
             this.TsbRemoveBy1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbRemoveBy1.Name = "TsbRemoveBy1";
             this.TsbRemoveBy1.Size = new System.Drawing.Size(29, 32);
-            this.TsbRemoveBy1.Text = "toolStripButton7";
+            this.TsbRemoveBy1.Text = "1文字詰め";
             // 
             // TsbRemoveBy2
             // 
@@ -1100,7 +1124,7 @@
             this.TsbRemoveBy2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbRemoveBy2.Name = "TsbRemoveBy2";
             this.TsbRemoveBy2.Size = new System.Drawing.Size(29, 32);
-            this.TsbRemoveBy2.Text = "toolStripButton8";
+            this.TsbRemoveBy2.Text = "2文字詰め";
             // 
             // toolStripSeparator3
             // 
@@ -1120,7 +1144,7 @@
             this.TsbOffset_Minus.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbOffset_Minus.Name = "TsbOffset_Minus";
             this.TsbOffset_Minus.Size = new System.Drawing.Size(29, 32);
-            this.TsbOffset_Minus.Text = "toolStripButton9";
+            this.TsbOffset_Minus.Text = "-0.01";
             // 
             // TsbOffset_Label
             // 
@@ -1136,7 +1160,7 @@
             this.TsbOffset_Plus.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbOffset_Plus.Name = "TsbOffset_Plus";
             this.TsbOffset_Plus.Size = new System.Drawing.Size(29, 32);
-            this.TsbOffset_Plus.Text = "toolStripButton10";
+            this.TsbOffset_Plus.Text = "+0.01";
             // 
             // SpcMain
             // 
@@ -1160,6 +1184,42 @@
             this.SpcMain.Size = new System.Drawing.Size(1003, 539);
             this.SpcMain.SplitterDistance = 207;
             this.SpcMain.TabIndex = 3;
+            // 
+            // GrbBalloon
+            // 
+            this.GrbBalloon.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GrbBalloon.Controls.Add(this.LsvBalloon);
+            this.GrbBalloon.Location = new System.Drawing.Point(3, 311);
+            this.GrbBalloon.Name = "GrbBalloon";
+            this.GrbBalloon.Size = new System.Drawing.Size(201, 225);
+            this.GrbBalloon.TabIndex = 3;
+            this.GrbBalloon.TabStop = false;
+            this.GrbBalloon.Text = "風船連打情報";
+            // 
+            // LsvBalloon
+            // 
+            this.LsvBalloon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LsvBalloon.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ColRow,
+            this.ColHits});
+            this.LsvBalloon.HideSelection = false;
+            this.LsvBalloon.Location = new System.Drawing.Point(6, 21);
+            this.LsvBalloon.Name = "LsvBalloon";
+            this.LsvBalloon.Size = new System.Drawing.Size(189, 198);
+            this.LsvBalloon.TabIndex = 0;
+            this.LsvBalloon.UseCompatibleStateImageBehavior = false;
+            this.LsvBalloon.View = System.Windows.Forms.View.Details;
+            // 
+            // ColRow
+            // 
+            this.ColRow.Text = "行";
+            // 
+            // ColHits
+            // 
+            this.ColHits.Text = "打数";
             // 
             // GrbPlayTime
             // 
@@ -1414,7 +1474,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AzkCode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.AzkCode.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.AzkCode.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.AzkCode.DrawingOption = ((Sgry.Azuki.DrawingOption)((((((((Sgry.Azuki.DrawingOption.DrawsFullWidthSpace | Sgry.Azuki.DrawingOption.DrawsEol) 
             | Sgry.Azuki.DrawingOption.HighlightCurrentLine) 
             | Sgry.Azuki.DrawingOption.ShowsLineNumber) 
@@ -1438,42 +1498,13 @@
             this.AzkCode.Size = new System.Drawing.Size(777, 533);
             this.AzkCode.TabIndex = 0;
             this.AzkCode.ViewWidth = 4164;
+            this.AzkCode.TextChanged += new System.EventHandler(this.AzkCode_TextChanged);
             // 
-            // GrbBalloon
+            // TsmVersion_Update
             // 
-            this.GrbBalloon.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.GrbBalloon.Controls.Add(this.LsvBalloon);
-            this.GrbBalloon.Location = new System.Drawing.Point(3, 311);
-            this.GrbBalloon.Name = "GrbBalloon";
-            this.GrbBalloon.Size = new System.Drawing.Size(201, 225);
-            this.GrbBalloon.TabIndex = 3;
-            this.GrbBalloon.TabStop = false;
-            this.GrbBalloon.Text = "風船連打情報";
-            // 
-            // LsvBalloon
-            // 
-            this.LsvBalloon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LsvBalloon.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ColRow,
-            this.ColHits});
-            this.LsvBalloon.HideSelection = false;
-            this.LsvBalloon.Location = new System.Drawing.Point(6, 21);
-            this.LsvBalloon.Name = "LsvBalloon";
-            this.LsvBalloon.Size = new System.Drawing.Size(189, 198);
-            this.LsvBalloon.TabIndex = 0;
-            this.LsvBalloon.UseCompatibleStateImageBehavior = false;
-            this.LsvBalloon.View = System.Windows.Forms.View.Details;
-            // 
-            // ColRow
-            // 
-            this.ColRow.Text = "行";
-            // 
-            // ColHits
-            // 
-            this.ColHits.Text = "打数";
+            this.TsmVersion_Update.Name = "TsmVersion_Update";
+            this.TsmVersion_Update.Size = new System.Drawing.Size(224, 26);
+            this.TsmVersion_Update.Text = "Update: 2020/6/15";
             // 
             // FrmMain
             // 
@@ -1488,6 +1519,7 @@
             this.MainMenuStrip = this.MesMain;
             this.Name = "FrmMain";
             this.Text = "TJA Code Pad";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
             this.MesMain.ResumeLayout(false);
             this.MesMain.PerformLayout();
             this.StsMain.ResumeLayout(false);
@@ -1498,6 +1530,7 @@
             this.SpcMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SpcMain)).EndInit();
             this.SpcMain.ResumeLayout(false);
+            this.GrbBalloon.ResumeLayout(false);
             this.GrbPlayTime.ResumeLayout(false);
             this.GrbBarInfo.ResumeLayout(false);
             this.GrbBarInfo.PerformLayout();
@@ -1505,7 +1538,6 @@
             this.GrbScoreInfo.ResumeLayout(false);
             this.GrbScoreInfo.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.GrbBalloon.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1662,5 +1694,7 @@
         private System.Windows.Forms.ListView LsvBalloon;
         private System.Windows.Forms.ColumnHeader ColRow;
         private System.Windows.Forms.ColumnHeader ColHits;
+        private System.Windows.Forms.ToolStripButton TsbSave;
+        private System.Windows.Forms.ToolStripMenuItem TsmVersion_Update;
     }
 }

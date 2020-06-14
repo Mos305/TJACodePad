@@ -18,7 +18,6 @@ D:\_Documents\VS2019\TJACodePad\TJACodePad\bin\Debug\Azuki.xml
 D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.csprojAssemblyReference.cache
 D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.Forms.FrmCobine.resources
 D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.FrmMain.resources
-D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.Forms.FrmOption.resources
 D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.Forms.FrmRepeat.resources
 D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.Forms.FrmSearch.resources
 D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.Properties.Resources.resources
@@ -27,3 +26,4 @@ D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.csproj.CoreCompi
 D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.csproj.CopyComplete
 D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.exe
 D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.pdb
+D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.Forms.FrmSetting.resources

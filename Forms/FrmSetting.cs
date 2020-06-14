@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TJACodePad.Forms
 {
-    public partial class FrmOption : Form
+    public partial class FrmSetting : Form
     {
-        public FrmOption()
+        public FrmSetting()
         {
             InitializeComponent();
         }

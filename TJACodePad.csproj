@@ -64,11 +64,11 @@
     <Compile Include="Forms\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmOption.cs">
+    <Compile Include="Forms\FrmSetting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmOption.Designer.cs">
-      <DependentUpon>FrmOption.cs</DependentUpon>
+    <Compile Include="Forms\FrmSetting.Designer.cs">
+      <DependentUpon>FrmSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmRepeat.cs">
       <SubType>Form</SubType>
@@ -90,8 +90,8 @@
     <EmbeddedResource Include="Forms\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmOption.resx">
-      <DependentUpon>FrmOption.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmSetting.resx">
+      <DependentUpon>FrmSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmRepeat.resx">
       <DependentUpon>FrmRepeat.cs</DependentUpon>
@@ -108,6 +108,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Documents\Reference.md" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -125,7 +126,6 @@
     <Content Include="app_icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Documents\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
