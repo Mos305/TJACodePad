@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TJACodePad.Forms;
+using TJACodePad.Models;
 
 namespace TJACodePad
 {
@@ -37,6 +38,9 @@ namespace TJACodePad
         // ネームドフラグ
         private bool isNamed = false;
 
+        // エディタクラス
+        private Editor editor;
+
         // 各種フォーム
         private FrmSetting frmSetting = null;
 
@@ -49,6 +53,9 @@ namespace TJACodePad
         public FrmMain()
         {
             InitializeComponent();
+
+            // インスタンス化
+            this.editor = new Editor(this.AzkCode);
 
             // バージョンとアップデート日を更新
             this.TsmVersion.Text = "Ver. " + VERSION;
@@ -67,7 +74,13 @@ namespace TJACodePad
 
         #region イベント
 
+        #region - ロード
+
+        #endregion
+
         #region - メニューバー
+
+        #region -- [ファイル]
 
         /// <summary>
         /// 新規作成
@@ -210,6 +223,310 @@ namespace TJACodePad
 
         #endregion
 
+
+
+        #region -- [編集]
+
+        #endregion
+
+
+
+        #region -- [ヘッダ]
+
+        private void TsmHeader_TITLE_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.TITLE + ":");
+            
+        }
+
+        private void TsmHeader_LEVEL_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.LEVEL + ":");
+        }
+
+        private void TsmHeader_BPM_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.BPM + ":");
+        }
+
+        private void TsmHeader_WAVE_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.WAVE + ":");
+        }
+
+        private void TsmHeader_SONGVOL_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.SONGVOL + ":");
+        }
+
+        private void TsmHeader_SEVOL_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.SEVOL + ":");
+        }
+
+        private void TsmHeader_OFFSET_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.OFFSET + ":");
+        }
+
+        //------------------------------------------------------------------
+
+        private void TsmHeader_BALLOON_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.BALLOON + ":");
+        }
+
+        //------------------------------------------------------------------
+
+        private void TsmHeader_COURSE_COURSE_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.COURSE + ":");
+        }
+
+        private void TsmHeader_COURSE_Easy_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.COURSE_EASY_STR);
+        }
+
+        private void TsmHeader_COURSE_Normal_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.COURSE_NORMAL_STR);
+        }
+
+        private void TsmHeader_COURSE_Hard_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.COURSE_HARD_STR);
+        }
+
+        private void TsmHeader_COURSE_Oni_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.COURSE_ONI_STR);
+        }
+
+        private void TsmHeader_COURSE_Edit_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.COURSE_EDIT_STR);
+        }
+
+        private void TsmHeader_SCOREMODE_SCOREMODE_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.SCOREMODE + ":");
+        }
+
+        private void TsmHeader_SCOREMODE_0_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.SCOREMODE_0.ToString());
+        }
+
+        private void TsmHeader_SCOREMODE_1_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.SCOREMODE_1.ToString());
+        }
+
+        private void TsmHeader_SCOREMODE_2_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.SCOREMODE_2.ToString());
+        }
+
+        //------------------------------------------------------------------
+
+        private void TsmHeader_STYLE_STYLE_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.STYLE + ":");
+        }
+
+        private void TsmHeader_STYLE_Single_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.STYLE_SINGLE_STR);
+        }
+
+        private void TsmHeader_STYLE_Double_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.STYLE_DOUBLE_STR);
+        }
+
+        private void TsmHeader_SIDE_SIDE_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.SIDE + ":");
+        }
+
+        private void TsmHeader_SIDE_Normal_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.SIDE_NORMAL_STR);
+        }
+
+        private void TsmHeader_SIDE_Ex_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.SIDE_EX_STR);
+        }
+
+        private void TsmHeader_SIDE_Both_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.SIDE_BOTH_STR);
+        }
+
+        //------------------------------------------------------------------
+        private void TsmHeader_SUBTITLE_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.SUBTITLE + ":");
+        }
+
+        private void TsmHeader_DEMOSTART_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.DEMOSTART + ":");
+        }
+
+        //------------------------------------------------------------------
+
+        private void TsmHeader_GAME_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.GAME + ":");
+        }
+
+        private void TsmHeader_LIFE_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA.LIFE + ":");
+        }
+
+        #endregion
+
+
+
+        #region -- [コマンド]
+
+        private void TsmCommand_START_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._START);
+        }
+
+        private void TsmCommand_STARTP1_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._START_P1);
+        }
+
+        private void TsmCommand_STARTP2_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._START_P2);
+        }
+
+        private void TsmCommand_END_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._END);
+        }
+
+        // ----------------------------------------------------------------------
+
+        private void TsmCommand_BPMCHANGE_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._BPMCHANGE + " ");
+        }
+
+        private void TsmCommand_GOGOSTART_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._GOGOSTART);
+        }
+
+        private void TsmCommand_GOGOEND_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._GOGOEND);
+        }
+
+        private void TsmCommand_MEASURE_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._MEASURE + " ");
+        }
+
+        private void TsmCommand_SCROLL_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._SCROLL + " ");
+        }
+
+        // ----------------------------------------------------------------------
+
+        private void TsmCommand_DELAY_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._DELAY + " ");
+        }
+
+        // ----------------------------------------------------------------------
+
+        private void TsmCommand_SECTION_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._SECTION);
+        }
+
+        private void TsmCommand_BRANCHSTART_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._BRANCHSTART + " ");
+        }
+
+        private void TsmCommand_BRANCHEND_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._BRANCHEND);
+        }
+
+        private void TsmCommand_N_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._N);
+        }
+
+        private void TsmCommand_E_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._E);
+        }
+
+        private void TsmCommand_M_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._M);
+        }
+
+        private void TsmCommand_LEVEL_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._LEVELHOLD);
+        }
+
+        // ----------------------------------------------------------------------
+
+        private void TsmCommand_BMSCROLL_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._BMSCROLL);
+        }
+
+        private void TsmCommand_HBSCROLL_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._HBSCROLL);
+        }
+
+        // ----------------------------------------------------------------------
+
+        private void TsmCommand_BARLINEOFF_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._BARLINEOFF);
+        }
+
+        private void TsmCommand_BARLINEON_Click(object sender, EventArgs e)
+        {
+            this.editor.Insert(TJA._BARLINEON);
+        }
+
+        #endregion
+
+
+
+        #region -- [ツール]
+
+        #endregion
+
+
+
+        #region -- [ヘルプ]
+
+        #endregion
+
+        #endregion
+
+
+
         #region - エディタ
 
         /// <summary>
@@ -292,10 +609,11 @@ namespace TJACodePad
                     sw.Close();
                     stream.Close();
 
-                    this.isNamed = true;
-                    this.filePath = sfd.FileName;
-                    this.isSaved = true;
-                    this.changeFormTitle();
+                    // 各種更新
+                    this.isNamed = true;            // ネームドフラグ
+                    this.filePath = sfd.FileName;   // ファイルパス
+                    this.isSaved = true;            // 保存フラグ
+                    this.changeFormTitle();         // フォームタイトル
                 }
             }
         }
@@ -309,6 +627,18 @@ namespace TJACodePad
         {
             return form == null || form.IsDisposed;
         }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

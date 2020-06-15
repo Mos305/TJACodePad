@@ -82,6 +82,8 @@
     <Compile Include="Forms\FrmSearch.Designer.cs">
       <DependentUpon>FrmSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Editor.cs" />
+    <Compile Include="Models\TJA.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\FrmCobine.resx">
@@ -118,15 +120,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app_icon.ico" />
+    <Content Include="Documents\img-README\screenshot.png" />
+    <None Include="Documents\History.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

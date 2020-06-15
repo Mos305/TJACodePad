@@ -181,6 +181,7 @@
             this.LblKa = new System.Windows.Forms.Label();
             this.AzkCode = new Sgry.Azuki.WinForms.AzukiControl();
             this.TsmVersion_Update = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripSeparator();
             this.MesMain.SuspendLayout();
             this.StsMain.SuspendLayout();
             this.TosMain.SuspendLayout();
@@ -209,7 +210,7 @@
             this.TsmVersion});
             this.MesMain.Location = new System.Drawing.Point(0, 0);
             this.MesMain.Name = "MesMain";
-            this.MesMain.Size = new System.Drawing.Size(1003, 28);
+            this.MesMain.Size = new System.Drawing.Size(1003, 30);
             this.MesMain.TabIndex = 0;
             this.MesMain.Text = "menuStrip1";
             // 
@@ -226,7 +227,7 @@
             this.TsmFile_Quit});
             this.TsmFile.Image = ((System.Drawing.Image)(resources.GetObject("TsmFile.Image")));
             this.TsmFile.Name = "TsmFile";
-            this.TsmFile.Size = new System.Drawing.Size(102, 24);
+            this.TsmFile.Size = new System.Drawing.Size(102, 26);
             this.TsmFile.Text = "ファイル(&F)";
             // 
             // TsmFile_NewFile
@@ -307,7 +308,7 @@
             this.TsmEdit_Combine});
             this.TsmEdit.Image = ((System.Drawing.Image)(resources.GetObject("TsmEdit.Image")));
             this.TsmEdit.Name = "TsmEdit";
-            this.TsmEdit.Size = new System.Drawing.Size(91, 24);
+            this.TsmEdit.Size = new System.Drawing.Size(91, 26);
             this.TsmEdit.Text = "編集(&E)";
             // 
             // TsmEdit_Search
@@ -427,66 +428,74 @@
             this.TsmHeader_LIFE});
             this.TsmHeader.Image = ((System.Drawing.Image)(resources.GetObject("TsmHeader.Image")));
             this.TsmHeader.Name = "TsmHeader";
-            this.TsmHeader.Size = new System.Drawing.Size(97, 24);
+            this.TsmHeader.Size = new System.Drawing.Size(97, 26);
             this.TsmHeader.Text = "ヘッダ(&A)";
             // 
             // TsmHeader_TITLE
             // 
             this.TsmHeader_TITLE.Name = "TsmHeader_TITLE";
-            this.TsmHeader_TITLE.Size = new System.Drawing.Size(199, 26);
+            this.TsmHeader_TITLE.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_TITLE.Text = "TITLE(&T)";
+            this.TsmHeader_TITLE.Click += new System.EventHandler(this.TsmHeader_TITLE_Click);
             // 
             // TsmHeader_LEVEL
             // 
             this.TsmHeader_LEVEL.Name = "TsmHeader_LEVEL";
-            this.TsmHeader_LEVEL.Size = new System.Drawing.Size(199, 26);
+            this.TsmHeader_LEVEL.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_LEVEL.Text = "LEVEL(&L)";
+            this.TsmHeader_LEVEL.Click += new System.EventHandler(this.TsmHeader_LEVEL_Click);
             // 
             // TsmHeader_BPM
             // 
             this.TsmHeader_BPM.Name = "TsmHeader_BPM";
-            this.TsmHeader_BPM.Size = new System.Drawing.Size(199, 26);
+            this.TsmHeader_BPM.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_BPM.Text = "BPM(&B)";
+            this.TsmHeader_BPM.Click += new System.EventHandler(this.TsmHeader_BPM_Click);
             // 
             // TsmHeader_WAVE
             // 
             this.TsmHeader_WAVE.Name = "TsmHeader_WAVE";
-            this.TsmHeader_WAVE.Size = new System.Drawing.Size(199, 26);
+            this.TsmHeader_WAVE.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_WAVE.Text = "WAVE(&W)";
+            this.TsmHeader_WAVE.Click += new System.EventHandler(this.TsmHeader_WAVE_Click);
             // 
             // TsmHeader_SONGVOL
             // 
             this.TsmHeader_SONGVOL.Name = "TsmHeader_SONGVOL";
-            this.TsmHeader_SONGVOL.Size = new System.Drawing.Size(199, 26);
+            this.TsmHeader_SONGVOL.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_SONGVOL.Text = "SONGVOL(&V)";
+            this.TsmHeader_SONGVOL.Click += new System.EventHandler(this.TsmHeader_SONGVOL_Click);
             // 
             // TsmHeader_SEVOL
             // 
             this.TsmHeader_SEVOL.Name = "TsmHeader_SEVOL";
-            this.TsmHeader_SEVOL.Size = new System.Drawing.Size(199, 26);
+            this.TsmHeader_SEVOL.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_SEVOL.Text = "SEVOL(&O)";
+            this.TsmHeader_SEVOL.Click += new System.EventHandler(this.TsmHeader_SEVOL_Click);
             // 
             // TsmHeader_OFFSET
             // 
             this.TsmHeader_OFFSET.Name = "TsmHeader_OFFSET";
-            this.TsmHeader_OFFSET.Size = new System.Drawing.Size(199, 26);
+            this.TsmHeader_OFFSET.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_OFFSET.Text = "OFFSET(&O)";
+            this.TsmHeader_OFFSET.Click += new System.EventHandler(this.TsmHeader_OFFSET_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(196, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(221, 6);
             // 
             // TsmHeader_BALLOON
             // 
             this.TsmHeader_BALLOON.Name = "TsmHeader_BALLOON";
-            this.TsmHeader_BALLOON.Size = new System.Drawing.Size(199, 26);
+            this.TsmHeader_BALLOON.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_BALLOON.Text = "BALLOON(&A)";
+            this.TsmHeader_BALLOON.Click += new System.EventHandler(this.TsmHeader_BALLOON_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(196, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(221, 6);
             // 
             // TsmHeader_COURSE
             // 
@@ -498,44 +507,50 @@
             this.TsmHeader_COURSE_Oni,
             this.TsmHeader_COURSE_Edit});
             this.TsmHeader_COURSE.Name = "TsmHeader_COURSE";
-            this.TsmHeader_COURSE.Size = new System.Drawing.Size(199, 26);
+            this.TsmHeader_COURSE.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_COURSE.Text = "COURSE(&C)";
             // 
             // TsmHeader_COURSE_COURSE
             // 
             this.TsmHeader_COURSE_COURSE.Name = "TsmHeader_COURSE_COURSE";
-            this.TsmHeader_COURSE_COURSE.Size = new System.Drawing.Size(170, 26);
+            this.TsmHeader_COURSE_COURSE.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_COURSE_COURSE.Text = "COURSE(&C)";
+            this.TsmHeader_COURSE_COURSE.Click += new System.EventHandler(this.TsmHeader_COURSE_COURSE_Click);
             // 
             // TsmHeader_COURSE_Easy
             // 
             this.TsmHeader_COURSE_Easy.Name = "TsmHeader_COURSE_Easy";
-            this.TsmHeader_COURSE_Easy.Size = new System.Drawing.Size(170, 26);
+            this.TsmHeader_COURSE_Easy.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_COURSE_Easy.Text = "- Easy(&0)";
+            this.TsmHeader_COURSE_Easy.Click += new System.EventHandler(this.TsmHeader_COURSE_Easy_Click);
             // 
             // TsmHeader_COURSE_Normal
             // 
             this.TsmHeader_COURSE_Normal.Name = "TsmHeader_COURSE_Normal";
-            this.TsmHeader_COURSE_Normal.Size = new System.Drawing.Size(170, 26);
+            this.TsmHeader_COURSE_Normal.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_COURSE_Normal.Text = "- Normal(&1)";
+            this.TsmHeader_COURSE_Normal.Click += new System.EventHandler(this.TsmHeader_COURSE_Normal_Click);
             // 
             // TsmHeader_COURSE_Hard
             // 
             this.TsmHeader_COURSE_Hard.Name = "TsmHeader_COURSE_Hard";
-            this.TsmHeader_COURSE_Hard.Size = new System.Drawing.Size(170, 26);
+            this.TsmHeader_COURSE_Hard.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_COURSE_Hard.Text = "- Hard(&2)";
+            this.TsmHeader_COURSE_Hard.Click += new System.EventHandler(this.TsmHeader_COURSE_Hard_Click);
             // 
             // TsmHeader_COURSE_Oni
             // 
             this.TsmHeader_COURSE_Oni.Name = "TsmHeader_COURSE_Oni";
-            this.TsmHeader_COURSE_Oni.Size = new System.Drawing.Size(170, 26);
+            this.TsmHeader_COURSE_Oni.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_COURSE_Oni.Text = "- Oni(&3)";
+            this.TsmHeader_COURSE_Oni.Click += new System.EventHandler(this.TsmHeader_COURSE_Oni_Click);
             // 
             // TsmHeader_COURSE_Edit
             // 
             this.TsmHeader_COURSE_Edit.Name = "TsmHeader_COURSE_Edit";
-            this.TsmHeader_COURSE_Edit.Size = new System.Drawing.Size(170, 26);
+            this.TsmHeader_COURSE_Edit.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_COURSE_Edit.Text = "- Edit(&4)";
+            this.TsmHeader_COURSE_Edit.Click += new System.EventHandler(this.TsmHeader_COURSE_Edit_Click);
             // 
             // TsmHeader_SCOREMODE_
             // 
@@ -545,37 +560,41 @@
             this.TsmHeader_SCOREMODE_1,
             this.TsmHeader_SCOREMODE_2});
             this.TsmHeader_SCOREMODE_.Name = "TsmHeader_SCOREMODE_";
-            this.TsmHeader_SCOREMODE_.Size = new System.Drawing.Size(199, 26);
+            this.TsmHeader_SCOREMODE_.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_SCOREMODE_.Text = "SCOREMODE(&R)";
             // 
             // TsmHeader_SCOREMODE_SCOREMODE
             // 
             this.TsmHeader_SCOREMODE_SCOREMODE.Name = "TsmHeader_SCOREMODE_SCOREMODE";
-            this.TsmHeader_SCOREMODE_SCOREMODE.Size = new System.Drawing.Size(208, 26);
+            this.TsmHeader_SCOREMODE_SCOREMODE.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_SCOREMODE_SCOREMODE.Text = "SCOREMODE(&R)";
+            this.TsmHeader_SCOREMODE_SCOREMODE.Click += new System.EventHandler(this.TsmHeader_SCOREMODE_SCOREMODE_Click);
             // 
             // TsmHeader_SCOREMODE_0
             // 
             this.TsmHeader_SCOREMODE_0.Name = "TsmHeader_SCOREMODE_0";
-            this.TsmHeader_SCOREMODE_0.Size = new System.Drawing.Size(208, 26);
+            this.TsmHeader_SCOREMODE_0.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_SCOREMODE_0.Text = "- ドンだフルモード(&0)";
+            this.TsmHeader_SCOREMODE_0.Click += new System.EventHandler(this.TsmHeader_SCOREMODE_0_Click);
             // 
             // TsmHeader_SCOREMODE_1
             // 
             this.TsmHeader_SCOREMODE_1.Name = "TsmHeader_SCOREMODE_1";
-            this.TsmHeader_SCOREMODE_1.Size = new System.Drawing.Size(208, 26);
+            this.TsmHeader_SCOREMODE_1.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_SCOREMODE_1.Text = "- AC14以前(&1)";
+            this.TsmHeader_SCOREMODE_1.Click += new System.EventHandler(this.TsmHeader_SCOREMODE_1_Click);
             // 
             // TsmHeader_SCOREMODE_2
             // 
             this.TsmHeader_SCOREMODE_2.Name = "TsmHeader_SCOREMODE_2";
-            this.TsmHeader_SCOREMODE_2.Size = new System.Drawing.Size(208, 26);
+            this.TsmHeader_SCOREMODE_2.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_SCOREMODE_2.Text = "- 新配点(&2)";
+            this.TsmHeader_SCOREMODE_2.Click += new System.EventHandler(this.TsmHeader_SCOREMODE_2_Click);
             // 
             // toolStripMenuItem12
             // 
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(196, 6);
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(221, 6);
             // 
             // TsmHeader_STYLE
             // 
@@ -584,26 +603,29 @@
             this.TsmHeader_STYLE_Single,
             this.TsmHeader_STYLE_Double});
             this.TsmHeader_STYLE.Name = "TsmHeader_STYLE";
-            this.TsmHeader_STYLE.Size = new System.Drawing.Size(199, 26);
+            this.TsmHeader_STYLE.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_STYLE.Text = "STYLE(&S)";
             // 
             // TsmHeader_STYLE_STYLE
             // 
             this.TsmHeader_STYLE_STYLE.Name = "TsmHeader_STYLE_STYLE";
-            this.TsmHeader_STYLE_STYLE.Size = new System.Drawing.Size(169, 26);
+            this.TsmHeader_STYLE_STYLE.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_STYLE_STYLE.Text = "STYLE(&S)";
+            this.TsmHeader_STYLE_STYLE.Click += new System.EventHandler(this.TsmHeader_STYLE_STYLE_Click);
             // 
             // TsmHeader_STYLE_Single
             // 
             this.TsmHeader_STYLE_Single.Name = "TsmHeader_STYLE_Single";
-            this.TsmHeader_STYLE_Single.Size = new System.Drawing.Size(169, 26);
+            this.TsmHeader_STYLE_Single.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_STYLE_Single.Text = "- Single(&1)";
+            this.TsmHeader_STYLE_Single.Click += new System.EventHandler(this.TsmHeader_STYLE_Single_Click);
             // 
             // TsmHeader_STYLE_Double
             // 
             this.TsmHeader_STYLE_Double.Name = "TsmHeader_STYLE_Double";
-            this.TsmHeader_STYLE_Double.Size = new System.Drawing.Size(169, 26);
+            this.TsmHeader_STYLE_Double.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_STYLE_Double.Text = "- Double(&2)";
+            this.TsmHeader_STYLE_Double.Click += new System.EventHandler(this.TsmHeader_STYLE_Double_Click);
             // 
             // TsmHeader_SIDE
             // 
@@ -613,66 +635,74 @@
             this.TsmHeader_SIDE_Ex,
             this.TsmHeader_SIDE_Both});
             this.TsmHeader_SIDE.Name = "TsmHeader_SIDE";
-            this.TsmHeader_SIDE.Size = new System.Drawing.Size(199, 26);
+            this.TsmHeader_SIDE.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_SIDE.Text = "SIDE(&I)";
             // 
             // TsmHeader_SIDE_SIDE
             // 
             this.TsmHeader_SIDE_SIDE.Name = "TsmHeader_SIDE_SIDE";
-            this.TsmHeader_SIDE_SIDE.Size = new System.Drawing.Size(170, 26);
+            this.TsmHeader_SIDE_SIDE.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_SIDE_SIDE.Text = "SIDE(&I)";
+            this.TsmHeader_SIDE_SIDE.Click += new System.EventHandler(this.TsmHeader_SIDE_SIDE_Click);
             // 
             // TsmHeader_SIDE_Normal
             // 
             this.TsmHeader_SIDE_Normal.Name = "TsmHeader_SIDE_Normal";
-            this.TsmHeader_SIDE_Normal.Size = new System.Drawing.Size(170, 26);
+            this.TsmHeader_SIDE_Normal.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_SIDE_Normal.Text = "- Normal(&1)";
+            this.TsmHeader_SIDE_Normal.Click += new System.EventHandler(this.TsmHeader_SIDE_Normal_Click);
             // 
             // TsmHeader_SIDE_Ex
             // 
             this.TsmHeader_SIDE_Ex.Name = "TsmHeader_SIDE_Ex";
-            this.TsmHeader_SIDE_Ex.Size = new System.Drawing.Size(170, 26);
+            this.TsmHeader_SIDE_Ex.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_SIDE_Ex.Text = "- Ex(&2)";
+            this.TsmHeader_SIDE_Ex.Click += new System.EventHandler(this.TsmHeader_SIDE_Ex_Click);
             // 
             // TsmHeader_SIDE_Both
             // 
             this.TsmHeader_SIDE_Both.Name = "TsmHeader_SIDE_Both";
-            this.TsmHeader_SIDE_Both.Size = new System.Drawing.Size(170, 26);
+            this.TsmHeader_SIDE_Both.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_SIDE_Both.Text = "- Both(&3)";
+            this.TsmHeader_SIDE_Both.Click += new System.EventHandler(this.TsmHeader_SIDE_Both_Click);
             // 
             // toolStripMenuItem13
             // 
             this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(196, 6);
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(221, 6);
             // 
             // TsmHeader_SUBTITLE
             // 
             this.TsmHeader_SUBTITLE.Name = "TsmHeader_SUBTITLE";
-            this.TsmHeader_SUBTITLE.Size = new System.Drawing.Size(199, 26);
+            this.TsmHeader_SUBTITLE.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_SUBTITLE.Text = "SUBTITLE(&U)";
+            this.TsmHeader_SUBTITLE.Click += new System.EventHandler(this.TsmHeader_SUBTITLE_Click);
             // 
             // TsmHeader_DEMOSTART
             // 
             this.TsmHeader_DEMOSTART.Name = "TsmHeader_DEMOSTART";
-            this.TsmHeader_DEMOSTART.Size = new System.Drawing.Size(199, 26);
+            this.TsmHeader_DEMOSTART.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_DEMOSTART.Text = "DEMOSTART(&D)";
+            this.TsmHeader_DEMOSTART.Click += new System.EventHandler(this.TsmHeader_DEMOSTART_Click);
             // 
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(196, 6);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(221, 6);
             // 
             // TsmHeader_GAME
             // 
             this.TsmHeader_GAME.Name = "TsmHeader_GAME";
-            this.TsmHeader_GAME.Size = new System.Drawing.Size(199, 26);
+            this.TsmHeader_GAME.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_GAME.Text = "GAME(&G)";
+            this.TsmHeader_GAME.Click += new System.EventHandler(this.TsmHeader_GAME_Click);
             // 
             // TsmHeader_LIFE
             // 
             this.TsmHeader_LIFE.Name = "TsmHeader_LIFE";
-            this.TsmHeader_LIFE.Size = new System.Drawing.Size(199, 26);
+            this.TsmHeader_LIFE.Size = new System.Drawing.Size(224, 26);
             this.TsmHeader_LIFE.Text = "LIFE(&F)";
+            this.TsmHeader_LIFE.Click += new System.EventHandler(this.TsmHeader_LIFE_Click);
             // 
             // TsmCommand
             // 
@@ -689,6 +719,7 @@
             this.TsmCommand_SCROLL,
             this.toolStripMenuItem8,
             this.TsmCommand_DELAY,
+            this.toolStripMenuItem16,
             this.TsmCommand_SECTION,
             this.TsmCommand_BRANCHSTART,
             this.TsmCommand_BRANCHEND,
@@ -704,154 +735,175 @@
             this.TsmCommand_BARLINEON});
             this.TsmCommand.Image = ((System.Drawing.Image)(resources.GetObject("TsmCommand.Image")));
             this.TsmCommand.Name = "TsmCommand";
-            this.TsmCommand.Size = new System.Drawing.Size(105, 24);
+            this.TsmCommand.Size = new System.Drawing.Size(105, 26);
             this.TsmCommand.Text = "コマンド(&C)";
             // 
             // TsmCommand_START
             // 
             this.TsmCommand_START.Name = "TsmCommand_START";
-            this.TsmCommand_START.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_START.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_START.Text = "#START(&0)";
+            this.TsmCommand_START.Click += new System.EventHandler(this.TsmCommand_START_Click);
             // 
             // TsmCommand_STARTP1
             // 
             this.TsmCommand_STARTP1.Name = "TsmCommand_STARTP1";
-            this.TsmCommand_STARTP1.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_STARTP1.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_STARTP1.Text = "#START P1(&1)";
+            this.TsmCommand_STARTP1.Click += new System.EventHandler(this.TsmCommand_STARTP1_Click);
             // 
             // TsmCommand_STARTP2
             // 
             this.TsmCommand_STARTP2.Name = "TsmCommand_STARTP2";
-            this.TsmCommand_STARTP2.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_STARTP2.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_STARTP2.Text = "#START P2(&2)";
+            this.TsmCommand_STARTP2.Click += new System.EventHandler(this.TsmCommand_STARTP2_Click);
             // 
             // TsmCommand_END
             // 
             this.TsmCommand_END.Name = "TsmCommand_END";
-            this.TsmCommand_END.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_END.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_END.Text = "#END(&3)";
+            this.TsmCommand_END.Click += new System.EventHandler(this.TsmCommand_END_Click);
             // 
             // toolStripMenuItem14
             // 
             this.toolStripMenuItem14.Name = "toolStripMenuItem14";
-            this.toolStripMenuItem14.Size = new System.Drawing.Size(218, 6);
+            this.toolStripMenuItem14.Size = new System.Drawing.Size(221, 6);
             // 
             // TsmCommand_BPMCHANGE
             // 
             this.TsmCommand_BPMCHANGE.Name = "TsmCommand_BPMCHANGE";
-            this.TsmCommand_BPMCHANGE.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_BPMCHANGE.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_BPMCHANGE.Text = "#BPMCHANGE(&B)";
+            this.TsmCommand_BPMCHANGE.Click += new System.EventHandler(this.TsmCommand_BPMCHANGE_Click);
             // 
             // TsmCommand_GOGOSTART
             // 
             this.TsmCommand_GOGOSTART.Name = "TsmCommand_GOGOSTART";
-            this.TsmCommand_GOGOSTART.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_GOGOSTART.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_GOGOSTART.Text = "#GOGOSTART(&G)";
+            this.TsmCommand_GOGOSTART.Click += new System.EventHandler(this.TsmCommand_GOGOSTART_Click);
             // 
             // TsmCommand_GOGOEND
             // 
             this.TsmCommand_GOGOEND.Name = "TsmCommand_GOGOEND";
-            this.TsmCommand_GOGOEND.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_GOGOEND.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_GOGOEND.Text = "#GOGOEND(&O)";
+            this.TsmCommand_GOGOEND.Click += new System.EventHandler(this.TsmCommand_GOGOEND_Click);
             // 
             // TsmCommand_MEASURE
             // 
             this.TsmCommand_MEASURE.Name = "TsmCommand_MEASURE";
-            this.TsmCommand_MEASURE.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_MEASURE.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_MEASURE.Text = "#MEASURE(&U)";
+            this.TsmCommand_MEASURE.Click += new System.EventHandler(this.TsmCommand_MEASURE_Click);
             // 
             // TsmCommand_SCROLL
             // 
             this.TsmCommand_SCROLL.Name = "TsmCommand_SCROLL";
-            this.TsmCommand_SCROLL.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_SCROLL.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_SCROLL.Text = "#SCROLL(&S)";
+            this.TsmCommand_SCROLL.Click += new System.EventHandler(this.TsmCommand_SCROLL_Click);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(218, 6);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(221, 6);
             // 
             // TsmCommand_DELAY
             // 
             this.TsmCommand_DELAY.Name = "TsmCommand_DELAY";
-            this.TsmCommand_DELAY.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_DELAY.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_DELAY.Text = "#DELAY(&D)";
+            this.TsmCommand_DELAY.Click += new System.EventHandler(this.TsmCommand_DELAY_Click);
             // 
             // TsmCommand_SECTION
             // 
             this.TsmCommand_SECTION.Name = "TsmCommand_SECTION";
-            this.TsmCommand_SECTION.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_SECTION.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_SECTION.Text = "#SECTION(&T)";
+            this.TsmCommand_SECTION.Click += new System.EventHandler(this.TsmCommand_SECTION_Click);
             // 
             // TsmCommand_BRANCHSTART
             // 
             this.TsmCommand_BRANCHSTART.Name = "TsmCommand_BRANCHSTART";
-            this.TsmCommand_BRANCHSTART.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_BRANCHSTART.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_BRANCHSTART.Text = "#BRANCHSTART(&R)";
+            this.TsmCommand_BRANCHSTART.Click += new System.EventHandler(this.TsmCommand_BRANCHSTART_Click);
             // 
             // TsmCommand_BRANCHEND
             // 
             this.TsmCommand_BRANCHEND.Name = "TsmCommand_BRANCHEND";
-            this.TsmCommand_BRANCHEND.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_BRANCHEND.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_BRANCHEND.Text = "#BRANCHEND(&A)";
+            this.TsmCommand_BRANCHEND.Click += new System.EventHandler(this.TsmCommand_BRANCHEND_Click);
             // 
             // TsmCommand_N
             // 
             this.TsmCommand_N.Name = "TsmCommand_N";
-            this.TsmCommand_N.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_N.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_N.Text = "#N(&N)";
+            this.TsmCommand_N.Click += new System.EventHandler(this.TsmCommand_N_Click);
             // 
             // TsmCommand_E
             // 
             this.TsmCommand_E.Name = "TsmCommand_E";
-            this.TsmCommand_E.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_E.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_E.Text = "#E(&E)";
+            this.TsmCommand_E.Click += new System.EventHandler(this.TsmCommand_E_Click);
             // 
             // TsmCommand_M
             // 
             this.TsmCommand_M.Name = "TsmCommand_M";
-            this.TsmCommand_M.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_M.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_M.Text = "#M(&M)";
+            this.TsmCommand_M.Click += new System.EventHandler(this.TsmCommand_M_Click);
             // 
             // TsmCommand_LEVEL
             // 
             this.TsmCommand_LEVEL.Name = "TsmCommand_LEVEL";
-            this.TsmCommand_LEVEL.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_LEVEL.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_LEVEL.Text = "#LEVELHOLD(&L)";
+            this.TsmCommand_LEVEL.Click += new System.EventHandler(this.TsmCommand_LEVEL_Click);
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(218, 6);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(221, 6);
             // 
             // TsmCommand_BMSCROLL
             // 
             this.TsmCommand_BMSCROLL.Name = "TsmCommand_BMSCROLL";
-            this.TsmCommand_BMSCROLL.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_BMSCROLL.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_BMSCROLL.Text = "#BMSCRROLL(&B)";
+            this.TsmCommand_BMSCROLL.Click += new System.EventHandler(this.TsmCommand_BMSCROLL_Click);
             // 
             // TsmCommand_HBSCROLL
             // 
             this.TsmCommand_HBSCROLL.Name = "TsmCommand_HBSCROLL";
-            this.TsmCommand_HBSCROLL.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_HBSCROLL.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_HBSCROLL.Text = "#HBSCROLL(&H)";
+            this.TsmCommand_HBSCROLL.Click += new System.EventHandler(this.TsmCommand_HBSCROLL_Click);
             // 
             // toolStripMenuItem10
             // 
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(218, 6);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(221, 6);
             // 
             // TsmCommand_BARLINEOFF
             // 
             this.TsmCommand_BARLINEOFF.Name = "TsmCommand_BARLINEOFF";
-            this.TsmCommand_BARLINEOFF.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_BARLINEOFF.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_BARLINEOFF.Text = "#BARLINEOFF(&I)";
+            this.TsmCommand_BARLINEOFF.Click += new System.EventHandler(this.TsmCommand_BARLINEOFF_Click);
             // 
             // TsmCommand_BARLINEON
             // 
             this.TsmCommand_BARLINEON.Name = "TsmCommand_BARLINEON";
-            this.TsmCommand_BARLINEON.Size = new System.Drawing.Size(221, 26);
+            this.TsmCommand_BARLINEON.Size = new System.Drawing.Size(224, 26);
             this.TsmCommand_BARLINEON.Text = "#BARLINEON(&i)";
+            this.TsmCommand_BARLINEON.Click += new System.EventHandler(this.TsmCommand_BARLINEON_Click);
             // 
             // TsmTool
             // 
@@ -861,7 +913,7 @@
             this.TsmTool_OtherTools});
             this.TsmTool.Image = ((System.Drawing.Image)(resources.GetObject("TsmTool.Image")));
             this.TsmTool.Name = "TsmTool";
-            this.TsmTool.Size = new System.Drawing.Size(94, 24);
+            this.TsmTool.Size = new System.Drawing.Size(94, 26);
             this.TsmTool.Text = "ツール(&T)";
             // 
             // TsmTool_Play
@@ -888,7 +940,7 @@
             this.TsmHelp_Help});
             this.TsmHelp.Image = ((System.Drawing.Image)(resources.GetObject("TsmHelp.Image")));
             this.TsmHelp.Name = "TsmHelp";
-            this.TsmHelp.Size = new System.Drawing.Size(99, 24);
+            this.TsmHelp.Size = new System.Drawing.Size(99, 26);
             this.TsmHelp.Text = "ヘルプ(&H)";
             // 
             // TsmHelp_Help
@@ -905,7 +957,7 @@
             this.TsmVersion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TsmVersion_Update});
             this.TsmVersion.Name = "TsmVersion";
-            this.TsmVersion.Size = new System.Drawing.Size(67, 24);
+            this.TsmVersion.Size = new System.Drawing.Size(67, 26);
             this.TsmVersion.Text = "Ver 0.1";
             // 
             // TssRow
@@ -1026,7 +1078,7 @@
             this.TsbOffset_Minus,
             this.TsbOffset_Label,
             this.TsbOffset_Plus});
-            this.TosMain.Location = new System.Drawing.Point(0, 28);
+            this.TosMain.Location = new System.Drawing.Point(0, 30);
             this.TosMain.Name = "TosMain";
             this.TosMain.Size = new System.Drawing.Size(1003, 35);
             this.TosMain.TabIndex = 2;
@@ -1490,7 +1542,7 @@
             fontInfo1.Size = 12;
             fontInfo1.Style = System.Drawing.FontStyle.Regular;
             this.AzkCode.FontInfo = fontInfo1;
-            this.AzkCode.ForeColor = System.Drawing.Color.White;
+            this.AzkCode.ForeColor = System.Drawing.SystemColors.Control;
             this.AzkCode.Location = new System.Drawing.Point(3, 6);
             this.AzkCode.Name = "AzkCode";
             this.AzkCode.ScrollPos = new System.Drawing.Point(0, 0);
@@ -1505,6 +1557,11 @@
             this.TsmVersion_Update.Name = "TsmVersion_Update";
             this.TsmVersion_Update.Size = new System.Drawing.Size(224, 26);
             this.TsmVersion_Update.Text = "Update: 2020/6/15";
+            // 
+            // toolStripMenuItem16
+            // 
+            this.toolStripMenuItem16.Name = "toolStripMenuItem16";
+            this.toolStripMenuItem16.Size = new System.Drawing.Size(221, 6);
             // 
             // FrmMain
             // 
@@ -1696,5 +1753,6 @@
         private System.Windows.Forms.ColumnHeader ColHits;
         private System.Windows.Forms.ToolStripButton TsbSave;
         private System.Windows.Forms.ToolStripMenuItem TsmVersion_Update;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem16;
     }
 }
