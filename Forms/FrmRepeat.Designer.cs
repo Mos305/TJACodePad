@@ -70,6 +70,7 @@
             this.TxtRepeatCount.Size = new System.Drawing.Size(92, 31);
             this.TxtRepeatCount.TabIndex = 3;
             this.TxtRepeatCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtRepeatCount.TextChanged += new System.EventHandler(this.TxtRepeatCount_TextChanged);
             // 
             // label3
             // 
@@ -88,6 +89,7 @@
             this.BtnRepeat.TabIndex = 5;
             this.BtnRepeat.Text = "リピート";
             this.BtnRepeat.UseVisualStyleBackColor = true;
+            this.BtnRepeat.Click += new System.EventHandler(this.BtnRepeat_Click);
             // 
             // FrmRepeat
             // 

@@ -28,117 +28,132 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.TxtInput1 = new System.Windows.Forms.TextBox();
+            this.GrbPriority = new System.Windows.Forms.GroupBox();
+            this.RdoInput2 = new System.Windows.Forms.RadioButton();
+            this.RdoInput1 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.TxtInput2 = new System.Windows.Forms.TextBox();
+            this.TxtCombine = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.BtnCombine = new System.Windows.Forms.Button();
+            this.BtnCopy = new System.Windows.Forms.Button();
+            this.GrbPriority.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // TxtInput1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(70, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(595, 31);
-            this.textBox1.TabIndex = 1;
+            this.TxtInput1.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtInput1.Location = new System.Drawing.Point(78, 34);
+            this.TxtInput1.Name = "TxtInput1";
+            this.TxtInput1.Size = new System.Drawing.Size(595, 31);
+            this.TxtInput1.TabIndex = 1;
+            this.TxtInput1.TextChanged += new System.EventHandler(this.TxtInput1_TextChanged);
             // 
-            // groupBox1
+            // GrbPriority
             // 
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(52, 128);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "優先";
+            this.GrbPriority.Controls.Add(this.RdoInput2);
+            this.GrbPriority.Controls.Add(this.RdoInput1);
+            this.GrbPriority.Location = new System.Drawing.Point(12, 12);
+            this.GrbPriority.Name = "GrbPriority";
+            this.GrbPriority.Size = new System.Drawing.Size(60, 128);
+            this.GrbPriority.TabIndex = 0;
+            this.GrbPriority.TabStop = false;
+            this.GrbPriority.Text = "優先";
             // 
-            // radioButton1
+            // RdoInput2
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(18, 33);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(17, 16);
-            this.radioButton1.TabIndex = 2;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.RdoInput2.AutoSize = true;
+            this.RdoInput2.Location = new System.Drawing.Point(22, 93);
+            this.RdoInput2.Name = "RdoInput2";
+            this.RdoInput2.Size = new System.Drawing.Size(17, 16);
+            this.RdoInput2.TabIndex = 3;
+            this.RdoInput2.UseVisualStyleBackColor = true;
+            // 
+            // RdoInput1
+            // 
+            this.RdoInput1.AutoSize = true;
+            this.RdoInput1.Checked = true;
+            this.RdoInput1.Location = new System.Drawing.Point(22, 33);
+            this.RdoInput1.Name = "RdoInput1";
+            this.RdoInput1.Size = new System.Drawing.Size(17, 16);
+            this.RdoInput1.TabIndex = 2;
+            this.RdoInput1.TabStop = true;
+            this.RdoInput1.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(70, 68);
+            this.label1.Location = new System.Drawing.Point(78, 68);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(595, 23);
             this.label1.TabIndex = 2;
             this.label1.Text = "×";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox2
+            // TxtInput2
             // 
-            this.textBox2.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(70, 94);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(595, 31);
-            this.textBox2.TabIndex = 2;
+            this.TxtInput2.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtInput2.Location = new System.Drawing.Point(78, 94);
+            this.TxtInput2.Name = "TxtInput2";
+            this.TxtInput2.Size = new System.Drawing.Size(595, 31);
+            this.TxtInput2.TabIndex = 2;
+            this.TxtInput2.TextChanged += new System.EventHandler(this.TxtInput2_TextChanged);
             // 
-            // radioButton2
+            // TxtCombine
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(18, 93);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(17, 16);
-            this.radioButton2.TabIndex = 3;
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(70, 154);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(595, 31);
-            this.textBox3.TabIndex = 3;
+            this.TxtCombine.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCombine.Location = new System.Drawing.Point(78, 154);
+            this.TxtCombine.Name = "TxtCombine";
+            this.TxtCombine.Size = new System.Drawing.Size(595, 31);
+            this.TxtCombine.TabIndex = 3;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(70, 128);
+            this.label2.Location = new System.Drawing.Point(78, 128);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(595, 23);
             this.label2.TabIndex = 5;
             this.label2.Text = "||";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button1
+            // BtnCombine
             // 
-            this.button1.Location = new System.Drawing.Point(671, 154);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 31);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "コピー";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BtnCombine.Location = new System.Drawing.Point(679, 154);
+            this.BtnCombine.Name = "BtnCombine";
+            this.BtnCombine.Size = new System.Drawing.Size(100, 31);
+            this.BtnCombine.TabIndex = 4;
+            this.BtnCombine.Text = "譜面を合成";
+            this.BtnCombine.UseVisualStyleBackColor = true;
+            this.BtnCombine.Click += new System.EventHandler(this.BtnCombine_Click);
+            // 
+            // BtnCopy
+            // 
+            this.BtnCopy.Location = new System.Drawing.Point(679, 191);
+            this.BtnCopy.Name = "BtnCopy";
+            this.BtnCopy.Size = new System.Drawing.Size(100, 31);
+            this.BtnCopy.TabIndex = 6;
+            this.BtnCopy.Text = "コピー";
+            this.BtnCopy.UseVisualStyleBackColor = true;
+            this.BtnCopy.Click += new System.EventHandler(this.BtnCopy_Click);
             // 
             // FrmCobine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(783, 202);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(789, 231);
+            this.Controls.Add(this.BtnCopy);
+            this.Controls.Add(this.BtnCombine);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.TxtCombine);
+            this.Controls.Add(this.TxtInput2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.GrbPriority);
+            this.Controls.Add(this.TxtInput1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmCobine";
             this.Text = "譜面を合成";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.GrbPriority.ResumeLayout(false);
+            this.GrbPriority.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,14 +161,15 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.TextBox TxtInput1;
+        private System.Windows.Forms.GroupBox GrbPriority;
+        private System.Windows.Forms.RadioButton RdoInput2;
+        private System.Windows.Forms.RadioButton RdoInput1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox TxtInput2;
+        private System.Windows.Forms.TextBox TxtCombine;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnCombine;
+        private System.Windows.Forms.Button BtnCopy;
     }
 }

@@ -17,7 +17,7 @@ namespace TJACodePad.Models
     /// </summary>
     public class Editor
     {
-        #region パラメータ
+        #region フィールド
 
         // AzukiControl
         private AzukiControl azuki;
@@ -56,6 +56,9 @@ namespace TJACodePad.Models
 
         #region メソッド
 
+        /// <summary>
+        /// キーワードハイライタを設定する関数
+        /// </summary>
         public void SetKeywordHighlighter()
         {
             Color backColor = Color.FromArgb(64, 64, 64);
@@ -117,6 +120,66 @@ namespace TJACodePad.Models
         public void Insert(string text)
         {
             this.azuki.Document.Replace(text, this.azuki.CaretIndex, this.azuki.CaretIndex);
+        }
+
+        /// <summary>
+        /// カーソル行に1文字おきに指定文字列を挿入する関数
+        /// </summary>
+        /// <param name="str">挿入する文字列</param>
+        public void Fill(string str)
+        {
+            int beginLine, beginCol;
+            string line;
+            string lineFilled = "";
+
+            // カーソル行の内容を取得
+            this.azuki.GetLineColumnIndexFromCharIndex(this.azuki.CaretIndex, out beginLine, out beginCol);
+            line = this.azuki.Document.GetLineContent(beginLine);
+            if (line.IndexOf(",") < 0) return;  // カーソル行が譜面行で無い場合は処理を行わない
+
+            // 1文字おきに指定文字列を挿入
+            int i;
+            for (i = 0; line[i] != ','; i++)
+            {
+                lineFilled += line[i] + str;
+            }
+            lineFilled += line.Substring(i);
+
+            // 挿入後の文字列をエディタに反映
+            this.azuki.Document.Replace(lineFilled,
+                this.azuki.Document.GetCharIndexFromLineColumnIndex(beginLine, 0),
+                this.azuki.Document.GetCharIndexFromLineColumnIndex(beginLine, 0) + line.Length);
+        }
+
+        /// <summary>
+        /// カーソル行から1文字ずつ指定文字数だけ削除する関数
+        /// </summary>
+        /// <param name="count">削除する文字数</param>
+        public void Remove(int count)
+        {
+            int beginLine, beginCol;
+            string line;
+            string lineRemoved = "";
+            int scoreLen;
+
+            // カーソル行の内容を取得
+            this.azuki.GetLineColumnIndexFromCharIndex(this.azuki.CaretIndex, out beginLine, out beginCol);
+            line = this.azuki.Document.GetLineContent(beginLine);
+            scoreLen = line.IndexOf(",");
+            if (scoreLen < 0) return;  // カーソル行が譜面行で無い場合は処理を行わない
+
+            // 1文字おきに指定文字列を挿入
+            int i;
+            for (i = 0; i < scoreLen; i+=(count + 1))
+            {
+                lineRemoved += line[i];
+            }
+            lineRemoved += line.Substring(scoreLen);
+
+            // 挿入後の文字列をエディタに反映
+            this.azuki.Document.Replace(lineRemoved,
+                this.azuki.Document.GetCharIndexFromLineColumnIndex(beginLine, 0),
+                this.azuki.Document.GetCharIndexFromLineColumnIndex(beginLine, 0) + line.Length);
         }
 
         #endregion

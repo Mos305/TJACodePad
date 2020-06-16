@@ -27,3 +27,4 @@ D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.csproj.CopyCompl
 D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.exe
 D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.pdb
 D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.Forms.FrmSetting.resources
+D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Debug\TJACodePad.Forms.FrmMoveLine.resources

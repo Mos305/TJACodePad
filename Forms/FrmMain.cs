@@ -17,7 +17,7 @@ namespace TJACodePad
     {
         #region 定数
 
-        private const string VERSION = "0.2";
+        private const string VERSION = "0.4";
         private const string UPDATE = "2020/6/15";
         
         private const string APPNAME = "TJA Code Pad";
@@ -29,7 +29,7 @@ namespace TJACodePad
 
 
 
-        #region パラメータ
+        #region フィールド
 
         // ファイルパス
         private string filePath = DEF_FILENAME;
@@ -43,6 +43,10 @@ namespace TJACodePad
 
         // 各種フォーム
         private FrmSetting frmSetting = null;
+        private FrmRepeat frmRepeat = null;
+        private FrmCobine frmCobine = null;
+        private FrmMoveLine frmMoveLine = null;
+        private FrmSearch frmSearch = null;
 
         #endregion
 
@@ -226,6 +230,193 @@ namespace TJACodePad
 
 
         #region -- [編集]
+
+        /// <summary>
+        /// 検索と置換
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmEdit_Search_Click(object sender, EventArgs e)
+        {
+            // 検索・置換画面を開く
+            if (this.IsFormOpened(this.frmSearch))
+            {
+                this.frmSearch = new FrmSearch(this.AzkCode);
+                this.frmSearch.Show();
+            }
+        }
+
+        /// <summary>
+        /// 行の移動
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmEdit_Move_Click(object sender, EventArgs e)
+        {
+            // 行移動画面を開く
+            if (this.IsFormOpened(this.frmMoveLine))
+            {
+                this.frmMoveLine = new FrmMoveLine(this.AzkCode);
+                this.frmMoveLine.Show();
+            }
+        }
+
+        // ------------------------------------------------------------------
+
+        /// <summary>
+        /// コメントアウト
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmEdit_Comment_Click(object sender, EventArgs e)
+        {
+            int beginIndex, endIndex;
+            int beginLine, endLine;
+            int beginCol, endCol;
+            int commentBegin;
+            string oldText = "";
+            string newText = "";
+
+            // 選択開始・終了位置を取得
+            this.AzkCode.Document.GetSelection(out beginIndex, out endIndex);
+
+            // 選択開始位置・終了位置の行番号と列番号を取得
+            this.AzkCode.Document.GetLineColumnIndexFromCharIndex(beginIndex, out beginLine, out beginCol);
+            this.AzkCode.Document.GetLineColumnIndexFromCharIndex(endIndex, out endLine, out endCol);
+            if (endLine > 0 && endCol == 0) endLine--;  // 終了位置が行頭の場合は1行前の末尾を選択終了位置とする
+
+            // コメントアウト開始位置を取得
+            commentBegin = this.AzkCode.Document.GetCharIndexFromLineColumnIndex(beginLine, 0);
+
+            // "//"を挿入
+            for (int i = beginLine; i < endLine; i++)
+            {
+                oldText += this.AzkCode.Document.GetLineContent(i) + Environment.NewLine;
+                newText += "//" + this.AzkCode.Document.GetLineContent(i) + Environment.NewLine;
+            }
+            oldText += this.AzkCode.Document.GetLineContent(endLine);
+            newText += "//" + this.AzkCode.Document.GetLineContent(endLine);
+
+            // コメントアウト
+            this.AzkCode.Document.Replace(newText, commentBegin, commentBegin + oldText.Length);
+            
+        }
+
+        /// <summary>
+        /// コメント解除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmEdit_UnComment_Click(object sender, EventArgs e)
+        {
+            int beginIndex, endIndex;
+            int beginLine, endLine;
+            int beginCol, endCol;
+            int commentBegin;
+            string oldText = "";
+            string newText = "";
+
+            // 選択開始・終了位置を取得
+            this.AzkCode.Document.GetSelection(out beginIndex, out endIndex);
+
+            // 選択開始位置・終了位置の行番号と列番号を取得
+            this.AzkCode.Document.GetLineColumnIndexFromCharIndex(beginIndex, out beginLine, out beginCol);
+            this.AzkCode.Document.GetLineColumnIndexFromCharIndex(endIndex, out endLine, out endCol);
+            if (endLine > 0 && endCol == 0) endLine--;  // 終了位置が行頭の場合は1行前の末尾を選択終了位置とする
+
+            // コメント解除開始位置を取得
+            commentBegin = this.AzkCode.Document.GetCharIndexFromLineColumnIndex(beginLine, 0);
+
+            // "//"を削除
+            for (int i = beginLine; i < endLine; i++)
+            {
+                oldText += this.AzkCode.Document.GetLineContent(i) + Environment.NewLine;
+                newText += this.AzkCode.Document.GetLineContent(i).Substring("//".Length) + Environment.NewLine;
+            }
+            oldText += this.AzkCode.Document.GetLineContent(endLine);
+            newText += this.AzkCode.Document.GetLineContent(endLine).Substring("//".Length);
+
+            // コメント解除
+            this.AzkCode.Document.Replace(newText, commentBegin, commentBegin + oldText.Length);
+        }
+
+        // ------------------------------------------------------------------
+
+        /// <summary>
+        /// 0埋め
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmEdit_Fill0_Click(object sender, EventArgs e)
+        {
+            // 0埋め
+            this.editor.Fill("0");
+        }
+
+        /// <summary>
+        /// 00埋め
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmEdit_Fill00_Click(object sender, EventArgs e)
+        {
+            // 00埋め
+            this.editor.Fill("00");
+        }
+
+        /// <summary>
+        /// 1文字詰め
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmEdit_RemoveBy1_Click(object sender, EventArgs e)
+        {
+            // 1文字詰め
+            this.editor.Remove(1);
+        }
+
+        /// <summary>
+        /// 2文字詰め
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmEdit_RemoveBy2_Click(object sender, EventArgs e)
+        {
+            // 2文字詰め
+            this.editor.Remove(2);
+        }
+
+        // ------------------------------------------------------------------
+
+        /// <summary>
+        /// リピート
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmEdit_Repeat_Click(object sender, EventArgs e)
+        {
+            // リピート画面を開く
+            if (this.IsFormOpened(this.frmRepeat))
+            {
+                this.frmRepeat = new FrmRepeat(this.AzkCode);
+                this.frmRepeat.Show();
+            }
+        }
+
+        /// <summary>
+        /// 譜面を合成
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmEdit_Combine_Click(object sender, EventArgs e)
+        {
+            // 譜面合成画面を開く
+            if (this.IsFormOpened(this.frmCobine))
+            {
+                this.frmCobine = new FrmCobine();
+                this.frmCobine.Show();
+            }
+        }
 
         #endregion
 
@@ -549,6 +740,8 @@ namespace TJACodePad
 
         #region メソッド
 
+        #region - システム
+
         /// <summary>
         /// フォームタイトルを変更する関数
         /// </summary>
@@ -567,8 +760,22 @@ namespace TJACodePad
                     break;
 
             }
-            
+
         }
+
+        /// <summary>
+        /// フォームが既に開かれているかどうかを判定する関数
+        /// </summary>
+        /// <param name="form">フォーム</param>
+        /// <returns>フォームが既に開かれているかどうか</returns>
+        private bool IsFormOpened(Form form)
+        {
+            return form == null || form.IsDisposed;
+        }
+
+        #endregion
+
+        #region - ファイル入出力
 
         /// <summary>
         /// 保存確認を行う関数
@@ -618,29 +825,10 @@ namespace TJACodePad
             }
         }
 
-        /// <summary>
-        /// フォームが既に開かれているかどうかを判定する関数
-        /// </summary>
-        /// <param name="form">フォーム</param>
-        /// <returns>フォームが既に開かれているかどうか</returns>
-        private bool IsFormOpened(Form form)
-        {
-            return form == null || form.IsDisposed;
-        }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+        #endregion
 
         #endregion
 

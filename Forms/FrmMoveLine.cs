@@ -13,7 +13,7 @@ using TJACodePad.Models;
 
 namespace TJACodePad.Forms
 {
-    public partial class FrmRepeat : Form
+    public partial class FrmMoveLine : Form
     {
         #region フィールド
 
@@ -22,15 +22,13 @@ namespace TJACodePad.Forms
 
         #endregion
 
-
-
         #region コンストラクタ
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
         /// <param name="azuki">AzukiControl</param>
-        public FrmRepeat(AzukiControl azuki)
+        public FrmMoveLine(AzukiControl azuki)
         {
             InitializeComponent();
 
@@ -39,45 +37,48 @@ namespace TJACodePad.Forms
 
         #endregion
 
-
-
         #region イベント
 
         /// <summary>
-        /// 「繰り返し回数」テキストボックス入力時
+        /// フォームロード時
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TxtRepeatCount_TextChanged(object sender, EventArgs e)
+        private void FrmMoveLine_Load(object sender, EventArgs e)
         {
-            // 入力フィルタ
-            Utils.Filter(this.TxtRepeatCount, this.regex);
-
+            // 行数の上限をラベルに表示
+            this.LblLineNo.Text = "行番号（1 - " + this.azuki.LineCount + "）：";
         }
 
         /// <summary>
-        /// 「リピート」ボタンクリック時
+        /// 行番号入力時
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnRepeat_Click(object sender, EventArgs e)
+        private void TxtLineNo_TextChanged(object sender, EventArgs e)
         {
-            string text = "";
-            int count = int.Parse(this.TxtRepeatCount.Text);
+            // 入力フィルタ
+            Utils.Filter(this.TxtLineNo, this.regex);
+        }
 
-            // テキストを作成
-            for (int i = 0; i < count; i++)
+        /// <summary>
+        /// 「行へ移動」ボタンクリック時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnMove_Click(object sender, EventArgs e)
+        {
+            int lineNo = int.Parse(this.TxtLineNo.Text);
+
+            // 指定行へカーソルを移動
+            if (0 < lineNo && lineNo < this.azuki.LineCount)
             {
-                text += this.TxtStr.Text + Environment.NewLine;
+                this.azuki.Document.SetCaretIndex(lineNo - 1, 0);
             }
-
-            // エディタに反映
-            this.azuki.Document.Replace(text, this.azuki.CaretIndex, this.azuki.CaretIndex);
-            
         }
 
         #endregion
 
-        
+
     }
 }
