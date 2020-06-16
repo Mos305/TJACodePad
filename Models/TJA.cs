@@ -28,6 +28,8 @@ namespace TJACodePad.Models
         public static readonly string SIDE = "SIDE";
         public static readonly string SUBTITLE = "SUBTITLE";
         public static readonly string SCOREMODE = "SCOREMODE";
+        public static readonly string SCOREINIT = "SCOREINIT";
+        public static readonly string SCOREDIFF = "SCOREDIFF";
 
         public static readonly int COURSE_EASY_NUM = 0;
         public static readonly int COURSE_NORMAL_NUM = 1;

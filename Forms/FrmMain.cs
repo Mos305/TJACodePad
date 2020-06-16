@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -17,13 +18,15 @@ namespace TJACodePad
     {
         #region 定数
 
-        private const string VERSION = "0.4";
-        private const string UPDATE = "2020/6/15";
+        private const string VERSION = "0.5";
+        private const string UPDATE = "2020/6/16";
         
         private const string APPNAME = "TJA Code Pad";
 
         private const string DEF_FILENAME = "NewFile.tja";
         private const string DEF_FILTER = "TJAファイル(*.tja)|*.tja|すべてのファイル(*.*)|*.*";
+
+        public readonly string CONFIG_PATH = Directory.GetCurrentDirectory() + "\\Config.xml";
 
         #endregion
 
@@ -40,6 +43,8 @@ namespace TJACodePad
 
         // エディタクラス
         private Editor editor;
+        // 設定クラス
+        private Config config;
 
         // 各種フォーム
         private FrmSetting frmSetting = null;
@@ -60,6 +65,7 @@ namespace TJACodePad
 
             // インスタンス化
             this.editor = new Editor(this.AzkCode);
+            this.config = new Config();
 
             // バージョンとアップデート日を更新
             this.TsmVersion.Text = "Ver. " + VERSION;
@@ -72,13 +78,43 @@ namespace TJACodePad
 
         #region アクセサ
 
+        public Config Config
+        {
+            set => this.config = value;
+            get => this.config;
+        }
+
+        public ToolStripComboBox _TsmTool_OtherTools
+        {
+            set => this.TsmTool_OtherTools = value;
+            get => this.TsmTool_OtherTools;
+        }
+
         #endregion
 
 
 
         #region イベント
 
-        #region - ロード
+        #region - ロード・クローズ
+
+        /// <summary>
+        /// フォームロード時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            // 設定ファイル読み込み
+            if (File.Exists(CONFIG_PATH))
+            {
+                this.config = this.config.Read(CONFIG_PATH);
+            }
+
+            // ツールのコンボボックスに追加
+            this.AddToolStripComboBox(this.TsmTool_OtherTools);
+            
+        }
 
         #endregion
 
@@ -129,7 +165,7 @@ namespace TJACodePad
                 if (stream != null)
                 {
                     // ファイルを読み込み
-                    StreamReader sr = new StreamReader(stream);
+                    StreamReader sr = new StreamReader(stream, Encoding.GetEncoding("Shift-JIS"));
                     this.AzkCode.Text = sr.ReadToEnd();
                     sr.Close();
                     stream.Close();
@@ -191,7 +227,7 @@ namespace TJACodePad
             // 設定画面を開く
             if (this.IsFormOpened(this.frmSetting))
             {
-                this.frmSetting = new FrmSetting();
+                this.frmSetting = new FrmSetting(this);
                 this.frmSetting.Show();
             }
         }
@@ -706,11 +742,61 @@ namespace TJACodePad
 
         #region -- [ツール]
 
+        /// <summary>
+        /// 譜面を再生
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmTool_Play_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start("\"" + this.config.PlayerPath + "\"", "\"" + this.filePath + "\"");
+            }
+            catch
+            {
+                MessageBox.Show("パスが正しくありません！", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// 譜面のフォルダを開く
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmTool_OpenFolder_Click(object sender, EventArgs e)
+        {
+            this.ExecApp(Path.GetDirectoryName(this.filePath));
+        }
+
+        //---------------------------------------------------------------
+
+        /// <summary>
+        /// 次を開く
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmTool_OtherTools_Open_Click(object sender, EventArgs e)
+        {
+            this.ExecApp(this.config.Apps.Find(x => x.Name == (string)this.TsmTool_OtherTools.SelectedItem).Path);
+        }
+
         #endregion
 
 
 
         #region -- [ヘルプ]
+
+        /// <summary>
+        /// GitHub
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmHelp_Help_Click(object sender, EventArgs e)
+        {
+            // GitHubリポジトリを開く
+            Process.Start("https://github.com/Mos305/TJACodePad");
+        }
 
         #endregion
 
@@ -719,6 +805,39 @@ namespace TJACodePad
 
 
         #region - エディタ
+
+        /// <summary>
+        /// キャレットが移動されたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AzkCode_CaretMoved(object sender, EventArgs e)
+        {
+            int line, col;
+            int begin, end;
+
+            // 現在のカーソル位置を表示
+            this.AzkCode.Document.GetLineColumnIndexFromCharIndex(this.AzkCode.CaretIndex, out line, out col);
+            this.TssRow.Text = (line + 1).ToString();
+            this.TssCol.Text = (col + 1).ToString();
+
+            // 選択中のテキストの文字数を表示
+            this.AzkCode.GetSelection(out begin, out end);
+            if (end - begin > 0)
+            {
+                // 選択時は表示
+                this.TssSelectionCharaLength_label.Visible = true;
+                this.TssSelectionCharaLength.Visible = true;
+                this.TssSelectionCharaLength.Text = (end - begin).ToString();
+            }
+            else
+            {
+                // それ以外の時は非表示
+                this.TssSelectionCharaLength_label.Visible = false;
+                this.TssSelectionCharaLength.Visible = false;
+            }
+            
+        }
 
         /// <summary>
         /// エディタの内容が変更されたとき
@@ -773,6 +892,49 @@ namespace TJACodePad
             return form == null || form.IsDisposed;
         }
 
+        /// <summary>
+        /// ToolStripComboBoxにアイテムを追加する関数
+        /// </summary>
+        /// <param name="comboBox">ToolStripComboBox</param>
+        public void AddToolStripComboBox(ToolStripComboBox comboBox)
+        {
+            // コンボボックスにアイテムを追加
+            this.TsmTool_OtherTools.Items.Clear();
+            foreach (Apps apps in this.Config.Apps)
+            {
+                this.TsmTool_OtherTools.Items.Add(apps.Name);
+            }
+
+            // アイテムが0件の場合、非活性化
+            if (this.TsmTool_OtherTools.Items.Count > 0)
+            {
+                this.TsmTool_OtherTools_Open.Enabled = true;
+                this.TsmTool_OtherTools.Enabled = true;
+                this.TsmTool_OtherTools.SelectedIndex = 0;
+            }
+            else
+            {
+                this.TsmTool_OtherTools_Open.Enabled = false;
+                this.TsmTool_OtherTools.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// 外部アプリケーションを実行する関数
+        /// </summary>
+        /// <param name="path">外部アプリケーションのパス</param>
+        private void ExecApp(string path)
+        {
+            try
+            {
+                Process.Start(path);
+            }
+            catch
+            {
+                MessageBox.Show("パスが正しくありません！", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         #endregion
 
         #region - ファイル入出力
@@ -811,7 +973,7 @@ namespace TJACodePad
                 if (stream != null)
                 {
                     // ファイルを書き込む
-                    StreamWriter sw = new StreamWriter(stream);
+                    StreamWriter sw = new StreamWriter(stream, Encoding.GetEncoding("Shift-JIS"));
                     sw.Write(this.AzkCode.Text);
                     sw.Close();
                     stream.Close();
@@ -824,6 +986,7 @@ namespace TJACodePad
                 }
             }
         }
+
 
 
 

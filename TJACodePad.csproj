@@ -88,6 +88,7 @@
     <Compile Include="Forms\FrmSearch.Designer.cs">
       <DependentUpon>FrmSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Editor.cs" />
     <Compile Include="Models\TJA.cs" />
     <Compile Include="Models\Utils.cs" />

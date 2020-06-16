@@ -87,6 +87,8 @@ namespace TJACodePad.Models
                 TJA.LEVEL,
                 TJA.LIFE,
                 TJA.OFFSET,
+                TJA.SCOREDIFF,
+                TJA.SCOREINIT,
                 TJA.SCOREMODE,
                 TJA.SEVOL,
                 TJA.SIDE,
@@ -101,7 +103,7 @@ namespace TJACodePad.Models
 
             this.azuki.ColorScheme.SetColor(CharClass.Heading1, Color.Tomato, backColor);
             this.azuki.ColorScheme.SetColor(CharClass.Heading2, Color.Aqua, backColor);
-            this.azuki.ColorScheme.SetColor(CharClass.Heading3, Color.Gray, backColor);
+            this.azuki.ColorScheme.SetColor(CharClass.Heading3, Color.DimGray, backColor);
             this.azuki.ColorScheme.SetColor(CharClass.Heading4, Color.Gold, backColor);
             this.azuki.ColorScheme.SetColor(CharClass.Heading5, Color.Orange, backColor);
 

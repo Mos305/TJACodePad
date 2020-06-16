@@ -18,8 +18,9 @@
 ## 入力フィルタ
 - [テキストボックスに入力できる文字を制限する簡単な方法(数字以外のパターンも可)](http://tsumiyan.blog.fc2.com/blog-entry-9.html)
 
-
-
+## 設定ファイル
+- [アプリケーションの設定を保存する](https://dobon.net/vb/dotnet/programing/storeappsettings.html)
+- [ファイル、ディレクトリが存在するか調べる](https://dobon.net/vb/dotnet/file/fileexists.html)
 
 
 

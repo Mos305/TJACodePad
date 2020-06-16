@@ -55,5 +55,18 @@ namespace TJACodePad.Models
             }
             return a;
         }
+
+
+        /// <summary>
+        /// リストビューの列幅を自動調整する関数
+        /// </summary>
+        /// <param name="listView">リストビュー</param>
+        public static void AutoSetListViewWidth(ListView listView)
+        {
+            foreach (ColumnHeader ch in listView.Columns)
+            {
+                ch.Width = -1;
+            }
+        }
     }
 }
