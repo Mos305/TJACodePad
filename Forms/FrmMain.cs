@@ -21,8 +21,8 @@ namespace TJACodePad
     {
         #region 定数
 
-        private const string VERSION = "1.0";
-        private const string UPDATE = "2020/6/19";
+        private const string VERSION = "1.0.1";
+        private readonly string UPDATE = DateTime.Today.Year.ToString() + "/" + DateTime.Today.Month.ToString() + "/" + DateTime.Today.Day.ToString();
         
         private const string APPNAME = "TJA Code Pad";
 
@@ -196,6 +196,40 @@ namespace TJACodePad
         }
 
         /// <summary>
+        /// ドラッグアンドドロップ入力
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FrmMain_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            this.filePath = files[0];
+
+            // ファイルを読み込み
+            StreamReader sr = new StreamReader(this.filePath, Encoding.GetEncoding("Shift-JIS"));
+            this.AzkCode.Text = sr.ReadToEnd();
+            sr.Close();
+
+            // 各種更新
+            this.isNamed = true;            // ネームドフラグ
+            this.isSaved = true;            // 保存フラグ
+            this.changeFormTitle();         // フォームタイトル
+        }
+
+        private void FrmMain_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.All;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+
+        /// <summary>
         /// 上書き保存
         /// </summary>
         /// <param name="sender"></param>
@@ -205,7 +239,7 @@ namespace TJACodePad
             if (this.isNamed == true)
             {
                 // 上書き保存
-                StreamWriter sw = new StreamWriter(this.filePath, false);
+                StreamWriter sw = new StreamWriter(this.filePath, false, Encoding.GetEncoding("Shift-JIS"));
                 sw.Write(this.AzkCode.Text);
                 sw.Close();
 
@@ -1096,10 +1130,10 @@ namespace TJACodePad
             Console.WriteLine(playTime);
             this.LblPlayTime.Text = Math.Floor(playTime / 60).ToString().PadLeft(2, '0') + ":" + Math.Floor(playTime % 60).ToString().PadLeft(2, '0');
 
-            if (ballloonLine.Count > 0 && balloonHit != null)
+            this.LsvBalloon.Items.Clear();
+            if (ballloonLine.Count > 0 && balloonHit != null && ballloonLine.Count == balloonHit.Length)
             {
                 // 風船連打が１つ以上存在する場合，その行と打数をリストビューに追加
-                this.LsvBalloon.Items.Clear();
                 for (int i = 0; i < ballloonLine.Count; i++)
                 {
                     this.LsvBalloon.Items.Add(new ListViewItem(new string[] { (ballloonLine[i] + 1).ToString(), balloonHit[i] }));
@@ -1279,6 +1313,8 @@ namespace TJACodePad
                 }
             }
         }
+
+
 
 
 

@@ -128,6 +128,7 @@
             this.TsmTool_OtherTools = new System.Windows.Forms.ToolStripComboBox();
             this.TsmHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.TsmHelp_Repository = new System.Windows.Forms.ToolStripMenuItem();
+            this.releaseを見るRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TsmVersion = new System.Windows.Forms.ToolStripMenuItem();
             this.TsmVersion_Update = new System.Windows.Forms.ToolStripMenuItem();
             this.TssRow = new System.Windows.Forms.ToolStripStatusLabel();
@@ -184,7 +185,6 @@
             this.LblNotes = new System.Windows.Forms.Label();
             this.LblKa = new System.Windows.Forms.Label();
             this.AzkCode = new Sgry.Azuki.WinForms.AzukiControl();
-            this.releaseを見るRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MesMain.SuspendLayout();
             this.StsMain.SuspendLayout();
             this.TosMain.SuspendLayout();
@@ -988,6 +988,13 @@
             this.TsmHelp_Repository.Text = "GitHubリポジトリへ(&G)...";
             this.TsmHelp_Repository.Click += new System.EventHandler(this.TsmHelp_Repository_Click);
             // 
+            // releaseを見るRToolStripMenuItem
+            // 
+            this.releaseを見るRToolStripMenuItem.Name = "releaseを見るRToolStripMenuItem";
+            this.releaseを見るRToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
+            this.releaseを見るRToolStripMenuItem.Text = "Releaseを見る(&R)...";
+            this.releaseを見るRToolStripMenuItem.Click += new System.EventHandler(this.releaseを見るRToolStripMenuItem_Click);
+            // 
             // TsmVersion
             // 
             this.TsmVersion.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -1598,7 +1605,7 @@
             fontInfo2.Size = 13;
             fontInfo2.Style = System.Drawing.FontStyle.Regular;
             this.AzkCode.FontInfo = fontInfo2;
-            this.AzkCode.ForeColor = System.Drawing.SystemColors.Control;
+            this.AzkCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.AzkCode.Location = new System.Drawing.Point(3, 6);
             this.AzkCode.Name = "AzkCode";
             this.AzkCode.ScrollPos = new System.Drawing.Point(0, 0);
@@ -1609,15 +1616,9 @@
             this.AzkCode.CaretMoved += new System.EventHandler(this.AzkCode_CaretMoved);
             this.AzkCode.TextChanged += new System.EventHandler(this.AzkCode_TextChanged);
             // 
-            // releaseを見るRToolStripMenuItem
-            // 
-            this.releaseを見るRToolStripMenuItem.Name = "releaseを見るRToolStripMenuItem";
-            this.releaseを見るRToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
-            this.releaseを見るRToolStripMenuItem.Text = "Releaseを見る(&R)...";
-            this.releaseを見るRToolStripMenuItem.Click += new System.EventHandler(this.releaseを見るRToolStripMenuItem_Click);
-            // 
             // FrmMain
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 633);
@@ -1631,6 +1632,8 @@
             this.Text = "TJA Code Pad";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
             this.Load += new System.EventHandler(this.FrmMain_Load);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FrmMain_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.FrmMain_DragEnter);
             this.MesMain.ResumeLayout(false);
             this.MesMain.PerformLayout();
             this.StsMain.ResumeLayout(false);

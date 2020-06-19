@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Template>TITLE:
+LEVEL:
+BPM:
+WAVE:
+OFFSET:
+SONGVOL:100
+SEVOL:100
+SCOREMODE:2
+SCOREINIT:
+SCOREDIFF:
+
+
+#START
+1,
+#END
+</Template>
+  <PlayerPath>D:\Taiko\太鼓さん次郎2 - 制作用\taikojiro2.exe</PlayerPath>
+  <Apps />
+</Config>

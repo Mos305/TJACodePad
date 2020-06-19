@@ -6,6 +6,8 @@
 ## ファイル入出力
 - [「ファイルを開く」ダイアログボックスを表示する](https://dobon.net/vb/dotnet/form/openfiledialog.html)
 - [「名前を付けて保存」ダイアログボックスを表示する](https://dobon.net/vb/dotnet/form/savefiledialog.html)
+- [Windows Formアプリケーションでエクスプローラからファイルのドラッグ&ドロップを受け入れる - C#プログラミング
+](https://www.ipentec.com/document/csharp-accept-drag-and-drop-from-explorer)
 
 ## Azuki
 - [API Reference](http://azuki.osdn.jp/api/1.7/Index.html)
