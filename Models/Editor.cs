@@ -102,14 +102,14 @@ namespace TJACodePad.Models
             this.azuki.Highlighter = kh;
 
             this.azuki.ColorScheme.SetColor(CharClass.Heading1, Color.Tomato, backColor);
-            this.azuki.ColorScheme.SetColor(CharClass.Heading2, Color.Aqua, backColor);
+            this.azuki.ColorScheme.SetColor(CharClass.Heading2, Color.DeepSkyBlue, backColor);
             this.azuki.ColorScheme.SetColor(CharClass.Heading3, Color.DimGray, backColor);
             this.azuki.ColorScheme.SetColor(CharClass.Heading4, Color.Gold, backColor);
             this.azuki.ColorScheme.SetColor(CharClass.Heading5, Color.Orange, backColor);
 
             this.azuki.ColorScheme.SetColor(CharClass.Keyword, Color.Aqua, backColor);
 
-            this.azuki.ColorScheme.SetColor(CharClass.Keyword2, Color.LightSalmon, backColor);
+            this.azuki.ColorScheme.SetColor(CharClass.Keyword2, Color.Violet, backColor);
             this.azuki.ColorScheme.SetColor(CharClass.Keyword3, Color.White, backColor);
 
             this.azuki.ColorScheme.SetColor(CharClass.Comment, Color.Lime, backColor);

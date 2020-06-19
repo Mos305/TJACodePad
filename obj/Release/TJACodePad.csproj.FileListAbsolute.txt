@@ -1,0 +1,16 @@
+D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Release\TJACodePad.csprojAssemblyReference.cache
+D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Release\TJACodePad.Forms.FrmCobine.resources
+D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Release\TJACodePad.FrmMain.resources
+D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Release\TJACodePad.Forms.FrmMoveLine.resources
+D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Release\TJACodePad.Forms.FrmSetting.resources
+D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Release\TJACodePad.Forms.FrmRepeat.resources
+D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Release\TJACodePad.Forms.FrmSearch.resources
+D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Release\TJACodePad.Properties.Resources.resources
+D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Release\TJACodePad.csproj.GenerateResource.cache
+D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Release\TJACodePad.csproj.CoreCompileInputs.cache
+D:\_Documents\VS2019\TJACodePad\TJACodePad\bin\Release\TJACodePad.exe.config
+D:\_Documents\VS2019\TJACodePad\TJACodePad\bin\Release\TJACodePad.exe
+D:\_Documents\VS2019\TJACodePad\TJACodePad\bin\Release\Azuki.dll
+D:\_Documents\VS2019\TJACodePad\TJACodePad\bin\Release\Azuki.xml
+D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Release\TJACodePad.csproj.CopyComplete
+D:\_Documents\VS2019\TJACodePad\TJACodePad\obj\Release\TJACodePad.exe

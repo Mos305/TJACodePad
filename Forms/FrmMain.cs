@@ -6,7 +6,10 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TJACodePad.Forms;
@@ -18,8 +21,8 @@ namespace TJACodePad
     {
         #region 定数
 
-        private const string VERSION = "0.5";
-        private const string UPDATE = "2020/6/16";
+        private const string VERSION = "1.0";
+        private const string UPDATE = "2020/6/19";
         
         private const string APPNAME = "TJA Code Pad";
 
@@ -41,10 +44,21 @@ namespace TJACodePad
         // ネームドフラグ
         private bool isNamed = false;
 
+        // 正規表現
+        private Regex patternHeader = new Regex(@"^[A-Z]+:");
+        private Regex patternCommand = new Regex(@"^#");
+        private Regex patternScoreAll = new Regex(@"^\s*[0-9]+");
+        private Regex patternScoreEnd = new Regex(@"^\s*[0-9]+,");
+        private Regex patternDon = new Regex(@"[13]");
+        private Regex patternKa = new Regex(@"[24]");
+        private Regex patternBalloon = new Regex(@"7");
+
         // エディタクラス
         private Editor editor;
         // 設定クラス
         private Config config;
+        // 譜面クラス
+        private Score score;
 
         // 各種フォーム
         private FrmSetting frmSetting = null;
@@ -66,6 +80,7 @@ namespace TJACodePad
             // インスタンス化
             this.editor = new Editor(this.AzkCode);
             this.config = new Config();
+            this.score = new Score();
 
             // バージョンとアップデート日を更新
             this.TsmVersion.Text = "Ver. " + VERSION;
@@ -132,7 +147,8 @@ namespace TJACodePad
             // 保存確認
             if (this.confirmSaved() == DialogResult.No) return;
 
-            this.AzkCode.Text = String.Empty;
+            // テンプレート読み込み
+            this.AzkCode.Text = this.config.Template;
 
             // 各種更新
             this.isNamed = false;           // ネームドフラグ
@@ -788,21 +804,74 @@ namespace TJACodePad
         #region -- [ヘルプ]
 
         /// <summary>
-        /// GitHub
+        /// GitHubリポジトリへ
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TsmHelp_Help_Click(object sender, EventArgs e)
+        private void TsmHelp_Repository_Click(object sender, EventArgs e)
         {
-            // GitHubリポジトリを開く
             Process.Start("https://github.com/Mos305/TJACodePad");
+        }
+
+        /// <summary>
+        /// Releaseを見る
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void releaseを見るRToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/Mos305/TJACodePad/releases");
         }
 
         #endregion
 
         #endregion
 
+        #region - ツールバー
 
+        /// <summary>
+        /// OFFSETの-
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsbOffset_Minus_Click(object sender, EventArgs e)
+        {
+            this.EditOffset(-0.01);
+        }
+
+        /// <summary>
+        /// OFFSETの+
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsbOffset_Plus_Click(object sender, EventArgs e)
+        {
+            this.EditOffset(0.01);
+        }
+
+        #endregion
+
+        #region - サイドエリア
+
+        /// <summary>
+        /// 風船連打情報
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LsvBalloon_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択した風船連打の行へジャンプ
+            foreach (ListViewItem item in this.LsvBalloon.SelectedItems)
+            {
+                int lineNo = int.Parse(item.Text) - 1;
+                string lineContent = this.AzkCode.Document.GetLineContent(lineNo);
+                int caretIndex = this.AzkCode.Document.GetCharIndexFromLineColumnIndex(lineNo, 0);
+                this.AzkCode.SetSelection(caretIndex, caretIndex + lineContent.Length);
+                this.AzkCode.ScrollToCaret();
+            }
+        }
+
+        #endregion
 
         #region - エディタ
 
@@ -813,13 +882,21 @@ namespace TJACodePad
         /// <param name="e"></param>
         private void AzkCode_CaretMoved(object sender, EventArgs e)
         {
-            int line, col;
+            int caretLine, caretCol;
             int begin, end;
 
+            string[] line = this.AzkCode.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+            int caretLineNo, caretColNo;
+
+            double currentHeaderBpm = TJA.BPM_DEFAULT;
+            double currentBpm = this.score.Bpm;
+            string currentMeasure = TJA._MEASURE_DEFAULT;
+            double currentHS = TJA._SCROLL_DEFAULT;
+
             // 現在のカーソル位置を表示
-            this.AzkCode.Document.GetLineColumnIndexFromCharIndex(this.AzkCode.CaretIndex, out line, out col);
-            this.TssRow.Text = (line + 1).ToString();
-            this.TssCol.Text = (col + 1).ToString();
+            this.AzkCode.Document.GetLineColumnIndexFromCharIndex(this.AzkCode.CaretIndex, out caretLine, out caretCol);
+            this.TssRow.Text = (caretLine + 1).ToString();
+            this.TssCol.Text = (caretCol + 1).ToString();
 
             // 選択中のテキストの文字数を表示
             this.AzkCode.GetSelection(out begin, out end);
@@ -836,7 +913,41 @@ namespace TJACodePad
                 this.TssSelectionCharaLength_label.Visible = false;
                 this.TssSelectionCharaLength.Visible = false;
             }
-            
+
+            // カーソル行のBPM，拍子，HSを表示
+            this.AzkCode.Document.GetLineColumnIndexFromCharIndex(this.AzkCode.CaretIndex, out caretLineNo, out caretColNo);
+            for (int i = 0; i < line.Length; i++)
+            {
+                if (patternCommand.IsMatch(line[i]))
+                {
+                    // 現時点でのBPM，拍子，HSを取得
+                    if (i < caretLineNo)
+                    {
+                        if (line[i].IndexOf(TJA._BPMCHANGE) >= 0)
+                        {
+                            if (!double.TryParse(line[i].Substring(TJA._BPMCHANGE.Length), out currentBpm))
+                            {
+                                currentBpm = this.score.Bpm;
+                            }
+                        }
+                        if (line[i].IndexOf(TJA._MEASURE) >= 0)
+                        {
+                            currentMeasure = line[i].Substring(TJA._MEASURE.Length).Trim();
+                        }
+                        if (line[i].IndexOf(TJA._SCROLL) >= 0)
+                        {
+                            if (!double.TryParse(line[i].Substring(TJA._SCROLL.Length), out currentHS))
+                            {
+                                currentHS = TJA._SCROLL_DEFAULT;
+                            }
+                        }
+                    }
+                }
+            }
+            this.LblBpm.Text = currentBpm.ToString();
+            this.LblMeasure.Text = currentMeasure;
+            this.LblHS.Text = currentHS.ToString();
+
         }
 
         /// <summary>
@@ -849,6 +960,151 @@ namespace TJACodePad
             // 各種更新
             this.isSaved = false;       // 保存フラグ
             this.changeFormTitle();     // フォームタイトル
+
+            string[] line = this.AzkCode.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+            int caretLineNo, caretColNo;
+
+            int countDon = 0;
+            int countKa = 0;
+
+            double caretBpm = TJA.BPM_DEFAULT;
+            string caretMeasure = TJA._MEASURE_DEFAULT;
+            double caretHS = TJA._SCROLL_DEFAULT;
+
+            double currentBpm = caretBpm;
+            string currentMeasure = caretMeasure;
+            double playTime = 0.0;
+
+            List<int> ballloonLine = new List<int>();
+            string[] balloonHit = null;
+
+            // カーソル行の行番号を取得
+            this.AzkCode.Document.GetLineColumnIndexFromCharIndex(this.AzkCode.CaretIndex, out caretLineNo, out caretColNo);
+
+            for (int i = 0; i < line.Length; i++)
+            {
+                if (patternHeader.IsMatch(line[i]))
+                {
+                    // BPMのヘッダ値を取得
+                    if (line[i].IndexOf(TJA.BPM) >= 0)
+                    {
+                        double headerBpm;
+                        if (double.TryParse(line[i].Substring(TJA.BPM.Length + ":".Length), out headerBpm))
+                        {
+                            this.score.Bpm = headerBpm;
+                            caretBpm = headerBpm;
+                            currentBpm = headerBpm;
+                        }
+                        else
+                        {
+                            this.score.Bpm = TJA.BPM_DEFAULT;
+                            caretBpm = TJA.BPM_DEFAULT;
+                            currentBpm = headerBpm;
+                        }
+                    }
+                    // OFFSETのヘッダ値を取得
+                    if (line[i].IndexOf(TJA.OFFSET) >= 0)
+                    {
+                        if (TJA.OFFSET.Length + ":".Length < line[i].Length)
+                        {
+                            this.TsbOffset_Label.Text = line[i].Substring(TJA.OFFSET.Length + ":".Length).Trim();
+                        }
+                    }
+                    // BALLOONのヘッダ値を取得
+                    if (line[i].IndexOf(TJA.BALLOON) >= 0)
+                    {
+                        string headerBalloon = line[i].Substring(TJA.BALLOON.Length + ":".Length).Trim();
+                        balloonHit = headerBalloon.Split(',');
+                    }
+                }
+                else if (patternCommand.IsMatch(line[i]))
+                {
+                    // 現在のBPM，拍子，HSを取得
+                    if (line[i].IndexOf(TJA._BPMCHANGE) >= 0)
+                    {
+                        if (!double.TryParse(line[i].Substring(TJA._BPMCHANGE.Length), out currentBpm))
+                        {
+                            currentBpm = this.score.Bpm;
+                        }
+                        if (i < caretColNo)
+                        {
+                            caretBpm = currentBpm;
+                        }
+                    }
+                    if (line[i].IndexOf(TJA._MEASURE) >= 0)
+                    {
+                        currentMeasure = line[i].Substring(TJA._MEASURE.Length).Trim();
+                        if (i < caretColNo)
+                        {
+                            caretMeasure = currentMeasure;
+                        }
+                    }
+                    if (line[i].IndexOf(TJA._SCROLL) >= 0)
+                    {
+                        if (!double.TryParse(line[i].Substring(TJA._SCROLL.Length), out caretHS))
+                        {
+                            caretHS = TJA._SCROLL_DEFAULT;
+                        }
+                    }
+                }
+                else if (patternScoreEnd.IsMatch(line[i]))
+                {
+                    // ドンの数，カツの数をカウント
+                    string lineMatched = patternScoreAll.Match(line[i]).Value;
+                    countDon += patternDon.Matches(lineMatched).Count;
+                    countKa += patternKa.Matches(lineMatched).Count;
+                    // 風船連打のある行を記録
+                    if (patternBalloon.IsMatch(lineMatched))
+                    {
+                        ballloonLine.Add(i);
+                    }
+
+                    // 演奏時間をカウント
+                    string[] currentMeasureValue = currentMeasure.Split('/');
+                    double numerator, denominator;
+                    if (currentMeasureValue.Length ==2 && double.TryParse(currentMeasureValue[0], out numerator) && double.TryParse(currentMeasureValue[1], out denominator))
+                    {
+                        playTime += 240.0 / currentBpm * numerator / denominator;
+                    }
+                }
+                else if (patternScoreAll.IsMatch(line[i]))
+                {
+                    // ドンの数，カツの数をカウント
+                    string lineMatched = patternScoreAll.Match(line[i]).Value;
+                    countDon += patternDon.Matches(lineMatched).Count;
+                    countKa += patternKa.Matches(lineMatched).Count;
+                    // 風船連打のある行を記録
+                    if (patternBalloon.IsMatch(lineMatched))
+                    {
+                        ballloonLine.Add(i);
+                    }
+                }
+            }
+
+            // 各値をラベルに表示
+            this.LblNotes.Text = (countDon + countKa).ToString();
+            this.LblDon.Text = countDon.ToString();
+            this.LblKa.Text = countKa.ToString();
+
+            this.LblBpm.Text = caretBpm.ToString();
+            this.LblMeasure.Text = caretMeasure;
+            this.LblHS.Text = caretHS.ToString();
+
+            Console.WriteLine("---");
+            Console.WriteLine(currentBpm);
+            Console.WriteLine(currentMeasure);
+            Console.WriteLine(playTime);
+            this.LblPlayTime.Text = Math.Floor(playTime / 60).ToString().PadLeft(2, '0') + ":" + Math.Floor(playTime % 60).ToString().PadLeft(2, '0');
+
+            if (ballloonLine.Count > 0 && balloonHit != null)
+            {
+                // 風船連打が１つ以上存在する場合，その行と打数をリストビューに追加
+                this.LsvBalloon.Items.Clear();
+                for (int i = 0; i < ballloonLine.Count; i++)
+                {
+                    this.LsvBalloon.Items.Add(new ListViewItem(new string[] { (ballloonLine[i] + 1).ToString(), balloonHit[i] }));
+                }
+            }
         }
 
         #endregion
@@ -890,49 +1146,6 @@ namespace TJACodePad
         private bool IsFormOpened(Form form)
         {
             return form == null || form.IsDisposed;
-        }
-
-        /// <summary>
-        /// ToolStripComboBoxにアイテムを追加する関数
-        /// </summary>
-        /// <param name="comboBox">ToolStripComboBox</param>
-        public void AddToolStripComboBox(ToolStripComboBox comboBox)
-        {
-            // コンボボックスにアイテムを追加
-            this.TsmTool_OtherTools.Items.Clear();
-            foreach (Apps apps in this.Config.Apps)
-            {
-                this.TsmTool_OtherTools.Items.Add(apps.Name);
-            }
-
-            // アイテムが0件の場合、非活性化
-            if (this.TsmTool_OtherTools.Items.Count > 0)
-            {
-                this.TsmTool_OtherTools_Open.Enabled = true;
-                this.TsmTool_OtherTools.Enabled = true;
-                this.TsmTool_OtherTools.SelectedIndex = 0;
-            }
-            else
-            {
-                this.TsmTool_OtherTools_Open.Enabled = false;
-                this.TsmTool_OtherTools.Enabled = false;
-            }
-        }
-
-        /// <summary>
-        /// 外部アプリケーションを実行する関数
-        /// </summary>
-        /// <param name="path">外部アプリケーションのパス</param>
-        private void ExecApp(string path)
-        {
-            try
-            {
-                Process.Start(path);
-            }
-            catch
-            {
-                MessageBox.Show("パスが正しくありません！", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         #endregion
@@ -988,6 +1201,84 @@ namespace TJACodePad
         }
 
 
+
+        #endregion
+
+        #region - メニューバー
+
+        /// <summary>
+        /// ToolStripComboBoxにアイテムを追加する関数
+        /// </summary>
+        /// <param name="comboBox">ToolStripComboBox</param>
+        public void AddToolStripComboBox(ToolStripComboBox comboBox)
+        {
+            // コンボボックスにアイテムを追加
+            this.TsmTool_OtherTools.Items.Clear();
+            foreach (Apps apps in this.Config.Apps)
+            {
+                this.TsmTool_OtherTools.Items.Add(apps.Name);
+            }
+
+            // アイテムが0件の場合、非活性化
+            if (this.TsmTool_OtherTools.Items.Count > 0)
+            {
+                this.TsmTool_OtherTools_Open.Enabled = true;
+                this.TsmTool_OtherTools.Enabled = true;
+                this.TsmTool_OtherTools.SelectedIndex = 0;
+            }
+            else
+            {
+                this.TsmTool_OtherTools_Open.Enabled = false;
+                this.TsmTool_OtherTools.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// 外部アプリケーションを実行する関数
+        /// </summary>
+        /// <param name="path">外部アプリケーションのパス</param>
+        private void ExecApp(string path)
+        {
+            try
+            {
+                Process.Start(path);
+            }
+            catch
+            {
+                MessageBox.Show("パスが正しくありません！", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
+
+        #region - ツールバー
+
+        /// <summary>
+        /// OFFSETを編集する関数
+        /// </summary>
+        /// <param name="d">OFFSETに足す/引く値</param>
+        private void EditOffset(double d)
+        {
+            double offset;
+            if (double.TryParse(this.TsbOffset_Label.Text, out offset))
+            {
+                // OFFSETを計算
+                offset += d;
+
+                // ツールバーのOFFSETラベルを更新
+                this.TsbOffset_Label.Text = offset.ToString();
+
+                // ヘッダののOFFSET値を更新
+                int offsetIndex = this.AzkCode.Text.IndexOf(TJA.OFFSET);
+                if (offsetIndex >= 0)
+                {
+                    int lineNo, colNo;
+                    this.AzkCode.Document.GetLineColumnIndexFromCharIndex(offsetIndex, out lineNo, out colNo);
+                    string lineContent = this.AzkCode.Document.GetLineContent(lineNo);
+                    this.AzkCode.Document.Replace(TJA.OFFSET + ":" + offset.ToString(), offsetIndex, offsetIndex + lineContent.Length);
+                }
+            }
+        }
 
 
 

@@ -21,6 +21,5 @@
 ## 設定ファイル
 - [アプリケーションの設定を保存する](https://dobon.net/vb/dotnet/programing/storeappsettings.html)
 - [ファイル、ディレクトリが存在するか調べる](https://dobon.net/vb/dotnet/file/fileexists.html)
-
-
+- [XMLドキュメントでは改行は￥nで、￥r￥nではない](http://rev-tips-memo.blogspot.com/2011/09/xmlnrn.html)
 

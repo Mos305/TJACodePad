@@ -31,6 +31,22 @@ namespace TJACodePad.Models
         public static readonly string SCOREINIT = "SCOREINIT";
         public static readonly string SCOREDIFF = "SCOREDIFF";
 
+        public static readonly string TITLE_DEFAULT = string.Empty;
+
+        public static readonly int LEVEL_DEFAULT = 0;
+
+        public static readonly double BPM_DEFAULT = 100.0;
+
+        public static readonly string WAVE_DEFAULT = string.Empty;
+
+        public static readonly double OFFSET_DEFAULT = 0.0;
+
+        public static readonly string BALLOON_DEFAULT = string.Empty;
+
+        public static readonly int SONGVOL_DEFAULT = 100;
+
+        public static readonly int SEVOL_DEFAULT = 100;
+
         public static readonly int COURSE_EASY_NUM = 0;
         public static readonly int COURSE_NORMAL_NUM = 1;
         public static readonly int COURSE_HARD_NUM = 2;
@@ -59,6 +75,10 @@ namespace TJACodePad.Models
 
         public static readonly string GAME_DEFAULT = GAME_TAIKO;
 
+        public static readonly int LIFE_DEFAULT = 0;
+
+        public static readonly double DEMOSTART_DEFAULT = 0.0;
+
         public static readonly int SIDE_NORMAL_NUM = 1;
         public static readonly int SIDE_EX_NUM = 2;
         public static readonly int SIDE_BOTHL_NUM = 3;
@@ -69,11 +89,17 @@ namespace TJACodePad.Models
         public static readonly int SIDE_DEFAULT_NUM = SIDE_BOTHL_NUM;
         public static readonly string SIDE_DEFAULT_STR = SIDE_BOTH_STR;
 
+        public static readonly string SUBTITLE_DEFAULT = string.Empty;
+
         public static readonly int SCOREMODE_0 = 0;
         public static readonly int SCOREMODE_1 = 1;
         public static readonly int SCOREMODE_2 = 2;
 
         public static readonly int SCOREMODE_DEFUALT = SCOREMODE_1;
+
+        public static readonly int SCOREINIT_DEFAULT = 0;
+
+        public static readonly int SCOREDIFF_DEFAULT = 0;
 
 
 

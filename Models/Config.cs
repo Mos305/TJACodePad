@@ -144,6 +144,14 @@ namespace TJACodePad.Models
             //閉じる
             sr.Close();
 
+            // XMLだと改行文字が'\n'なので修正
+            string[] line = config.template.Split('\n');
+            config.template = string.Empty;
+            for (int i=0; i < line.Length; i++)
+            {
+                config.template += line[i] + Environment.NewLine;
+            }
+
             return config;
         }
 
