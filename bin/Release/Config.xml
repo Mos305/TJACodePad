@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Template>TITLE:
+DEMOSTART:
 LEVEL:
 BPM:
 WAVE:
@@ -15,7 +16,14 @@ SCOREDIFF:
 #START
 1,
 #END
+
+
 </Template>
   <PlayerPath>D:\Taiko\太鼓さん次郎2 - 制作用\taikojiro2.exe</PlayerPath>
-  <Apps />
+  <Apps>
+    <Apps>
+      <Name>ScoreCalculator.exe</Name>
+      <Path>D:\Taiko\ScoreCalculator.v2.2.2\Release\ScoreCalculator.exe</Path>
+    </Apps>
+  </Apps>
 </Config>

@@ -21,8 +21,8 @@ namespace TJACodePad
     {
         #region 定数
 
-        private const string VERSION = "1.0.1";
-        private readonly string UPDATE = DateTime.Today.Year.ToString() + "/" + DateTime.Today.Month.ToString() + "/" + DateTime.Today.Day.ToString();
+        private const string VERSION = "1.0.2";
+        private readonly string UPDATE = "2020/6/20";
         
         private const string APPNAME = "TJA Code Pad";
 
@@ -927,6 +927,9 @@ namespace TJACodePad
             string currentMeasure = TJA._MEASURE_DEFAULT;
             double currentHS = TJA._SCROLL_DEFAULT;
 
+            int barCurrent = 0;
+            int barAll = 0;
+
             // 現在のカーソル位置を表示
             this.AzkCode.Document.GetLineColumnIndexFromCharIndex(this.AzkCode.CaretIndex, out caretLine, out caretCol);
             this.TssRow.Text = (caretLine + 1).ToString();
@@ -977,10 +980,22 @@ namespace TJACodePad
                         }
                     }
                 }
+                else if (patternScoreEnd.IsMatch(line[i]))
+                {
+                    // 小節数をカウント
+                    if (i <= caretLineNo)
+                    {
+                        barCurrent++;
+                    }
+                    barAll++;
+                }
             }
             this.LblBpm.Text = currentBpm.ToString();
             this.LblMeasure.Text = currentMeasure;
             this.LblHS.Text = currentHS.ToString();
+
+            this.TssMeasure_Current.Text = barCurrent.ToString();
+            this.TssMeasure_All.Text = barAll.ToString();
 
         }
 
@@ -1011,6 +1026,9 @@ namespace TJACodePad
 
             List<int> ballloonLine = new List<int>();
             string[] balloonHit = null;
+
+            int barCurrent = 0;
+            int barAll = 0;
 
             // カーソル行の行番号を取得
             this.AzkCode.Document.GetLineColumnIndexFromCharIndex(this.AzkCode.CaretIndex, out caretLineNo, out caretColNo);
@@ -1100,6 +1118,13 @@ namespace TJACodePad
                     {
                         playTime += 240.0 / currentBpm * numerator / denominator;
                     }
+
+                    // 小節数をカウント
+                    if (i <= caretLineNo)
+                    {
+                        barCurrent++;
+                    }
+                    barAll++;
                 }
                 else if (patternScoreAll.IsMatch(line[i]))
                 {
@@ -1139,6 +1164,9 @@ namespace TJACodePad
                     this.LsvBalloon.Items.Add(new ListViewItem(new string[] { (ballloonLine[i] + 1).ToString(), balloonHit[i] }));
                 }
             }
+
+            this.TssMeasure_Current.Text = barCurrent.ToString();
+            this.TssMeasure_All.Text = barAll.ToString();
         }
 
         #endregion
